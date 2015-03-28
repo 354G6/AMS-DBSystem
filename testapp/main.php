@@ -1,30 +1,18 @@
-<h1>ttesting</h1>
 <?php
-<<<<<<< HEAD
-    echo "ttesting!";
-	echo "ttestingttesting";
-=======
-include 'test.php';
-    echo "Hello world!<br>Congratulations!";
-	echo "<br>Ricky";
+	//Test all table functions
+	include '../PHP/Include.php';
 	
-	// Using mysqli (connecting from App Engine)
-	// Before connecting an IPv4 address must be requested from google cloud for the sql instance for the first parameter
-	// (unless someone can get it working with the PIv6 address) (ACCESS CONTROL->IP adress)
-	// You may need to add your IP address to those allowed to connect externally
-	// (ACCESS CONTROL->Authorization)
-	$sql = new mysqli('173.194.246.51:3306',
-	'nicholas',
-	'amspassword',
-	'AMS_CMPT354'
-	);
+	//test customer functions
+	$r = CustomerInsert(123456789, "password", "customer name", "1234 Apple St BC", 7787771234);
+	echo $r;
+	$r = CustomerDelete(123456789);
+	echo $r;
 	
-	if ($sql->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	}else{
-		echo "Connection success.";
-	}
+	//test item functions
+	$r = ItemInsert(123456789123, "item title", "item type", "category", "company", 1999, 19.99, 5);
+	echo $r;
+	$r = ItemDelete(123456789123);
+	echo $r;
 	
-	$sql->close();
+	//test leadsinger functions
 ?>
->>>>>>> origin/master

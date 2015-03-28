@@ -6,10 +6,6 @@
 		'AMS_CMPT354'
 		);
 		
-		if ($sql->connect_error) {
-			return 1;
-		}
-		
 		return $sql;
 	}
 	

@@ -1,20 +1,35 @@
 <?php
-	include 'Connect.php';
+	include_once 'Connect.php';
 
 	function OrderInsert($receiptId, $date, $cid, $cardNum, $expiryDate, $expectedDate, $deliveredDate){
 		$sql = Connect();
-		$sql->query("INSERT INTO [Order] VALUES ('$receiptId', '$date', '$cid', '$cardNum', '$expiryDate', '$expectedDate', '$deliveredDate')");
+		if ($sql->connect_error) {
+			return 1;
+		}
+		if($sql->query("INSERT INTO [Order] VALUES ('$receiptId', '$date', '$cid', '$cardNum', '$expiryDate', '$expectedDate', '$deliveredDate')") === FALSE){
+			return 2;
+		}
 		Close($sql);
+		return 0;
 	}
 	
 	function OrderDelete($receiptId, $cid){
 		$sql = Connect();
-		$sql->query("DELETE FROM [Order] WHERE receiptId = '$receiptId' AND cid = '$cid'");
+		if ($sql->connect_error) {
+			return 1;
+		}
+		if($sql->query("DELETE FROM [Order] WHERE receiptId = '$receiptId' AND cid = '$cid'") === FALSE){
+			return 2;
+		}
 		Close($sql);
+		return 0;
 	}
 	
 	function OrderDisplay(){
 		$sql = Connect();
+		if ($sql->connect_error) {
+			return 1;
+		}
 		$result = $sql->query("SELECT * FROM [Order]");
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
