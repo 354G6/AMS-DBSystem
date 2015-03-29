@@ -13,7 +13,7 @@
 		return 0;
 	}
 	
-	function ReturnItemDelete($upc, $title){
+	function ReturnItemDelete($retid, $upc){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			return 1;

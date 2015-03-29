@@ -13,7 +13,7 @@
 		return 0;
 	}
 	
-	function PurchaseItemDelete($upc, $title){
+	function PurchaseItemDelete($receiptId, $upc){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			return 1;
