@@ -30,21 +30,42 @@
 	}
 	
 	function itemPurchase($cid, $category, $title, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
+		define("MAX_UNDELIVERED_ORDERS", 10);
 		$upc = itemSearch($category, $title, $leadingSinger);
-		$expiryDate = date('YYYY-MM-DD', strtotime($expiryDate));
+		$expiryDate = date('YYYY-MM-DD', strtotime($expiryDate));//mysql date
+		$todayDate = date('Y-m-d H:i:s'); //mysql datetime
 		$numUpc=count($upc);
+		
 		if ($numUpc==1){
 			$sql = Connect();
 			if ($sql->connect_error) {
 				return 1;
 			}
+			
+			//insert tuple in PurchaseItem table
 			if($sql->query("INSERT INTO PurchaseItem (upc, quantity) VALUES ('$upc', '$quantity')") === FALSE){
 				return 2;
 			}
-			if($sql->query("INSERT INTO Order (cid, cardNum, expiryDate) VALUES ('$cid', '$cardNum', '$expiryDate')") === FALSE){
+			
+			//update inventory
+			if($sql->query("UPDATE Item SET stock=stock-1 WHERE upc='$upc'") === FALSE){
+				return 2;
+			}
+			
+			//estimate Delivery Date
+			if($countOrder = $sql->query("SELECT COUNT(receiptId) FROM Order WHERE deliveredDate=NULL") === FALSE){
+				return 2;
+			}
+			$ourstandingOrders = mysql_fetch_row($countOrder);
+			$days = (int) ($ourstandingOrders/MAX_UNDELIVERED_ORDERS)+1;
+			$expectedDate = date('YYYY-MM-DD', strtotime("+".$days." days", strtotime($todayDate)));
+			
+			//insert tuple in Order table
+			if($sql->query("INSERT INTO Order (date, cid, cardNum, expiryDate, expectedDate) VALUES ('$todayDate', '$cid', '$cardNum', '$expiryDate', '$expectedDate')") === FALSE){
 				return 2;
 			}
 			Close($sql);
-		} elseif ($numUpc<1) return 3; //meaning no upc returned
-		return 4; //meaning more than one upc
+		} elseif ($numUpc<1) return 3; //meaning no item matches the criteria
+		return 4; //meaning more than one item matches the criteria
 	}
+	
