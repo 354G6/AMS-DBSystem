@@ -30,7 +30,7 @@
 	}
 	
 	function itemPurchase($cid, $category, $title, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
-		define("MAX_UNDELIVERED_ORDERS", 10);
+		define("MAX_DAILY_DELIVERY", 10);
 		$upc = itemSearch($category, $title, $leadingSinger);
 		$expiryDate = date('YYYY-MM-DD', strtotime($expiryDate));//mysql date
 		$todayDate = date('Y-m-d H:i:s'); //mysql datetime
@@ -57,7 +57,7 @@
 				return 2;
 			}
 			$ourstandingOrders = mysql_fetch_row($countOrder);
-			$days = (int) ($ourstandingOrders/MAX_UNDELIVERED_ORDERS)+1;
+			$days = (int) ($ourstandingOrders/MAX_DAILY_DELIVERY)+1;
 			$expectedDate = date('YYYY-MM-DD', strtotime("+".$days." days", strtotime($todayDate)));
 			
 			//insert tuple in Order table
