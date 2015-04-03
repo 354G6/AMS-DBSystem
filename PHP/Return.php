@@ -69,6 +69,8 @@
 		
 		//
 		
-		return 5555; //Item return completed.
+		
+		Close($sql);
+		return 0; //Item return completed.
 	}
 ?>
