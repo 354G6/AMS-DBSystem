@@ -3,6 +3,15 @@
 	//tests are currently in wrong order, foreign keys won't work
 	include '../PHP/Include.php';
 	
+	/*$r = DailyReport('1000-01-01');
+	for($x = 0; $x < count($r); $x++){
+		for($y = 0; $y < count($r[$x]); $y++){
+			echo $r[$x][$y];echo " ";
+		}
+	}
+	$t = DailyTotal($r);
+	echo $t;*/
+	
 	//$r = CustomerRegister(123456789, "password", "name", "1234 Apple St Vancouver", 7787771234);
 	/*$r = CustomerLogin(123456789, "password");
 	if($r == 0){

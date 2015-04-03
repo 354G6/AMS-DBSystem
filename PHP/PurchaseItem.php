@@ -46,24 +46,28 @@
 			return 1;
 		}
 		//$date format must be yyyy-mm-dd
-		$result = $sql->query("SELECT upc, category, SUM(price), SUM(quantity) 
+		$result = $sql->query("SELECT Item.upc, category, ROUND((price*SUM(quantity)), 2) AS price, SUM(quantity)
 							   FROM Item 
 							   INNER JOIN PurchaseItem 
-							   ON Item.upc=PurchaseItem.upc 
-							   INNER JOIN Order 
+							   ON Item.upc=PurchaseItem.upc
+							   INNER JOIN `Order` 
 							   ON PurchaseItem.receiptId=Order.receiptId
-							   WHERE DATE(`date`) = '$date';
-							   GROUP BY upc");
+							   WHERE '$date' = date(`Order`.`date`)
+							   GROUP BY Item.upc");
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;
 		}
 		Close($sql);
-		$totalPrice = 0;
-		for($i = 0; $i < count($table); $i++){
-			$totalPrice = $totalPrice + $table[i][2];
-		}
-		$table[] = $totalPrice;
 		return $table;
+	}
+	
+	function DailyTotal($table){
+		reset($table);
+		$totalPrice = 0;
+		for($x = 0; $x < count($table); $x++){
+			$totalPrice = $totalPrice + $table[$x][2];
+		}
+		return $totalPrice;
 	}
 ?>
