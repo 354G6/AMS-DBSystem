@@ -11,20 +11,20 @@
 
 <body>
 <h1>&nbsp;</h1>
-<div id="Layer3">
+<div id="Header">
   <h1>AMS DBSystem CMPT 354 G6</h1>
   <h3 align="right">Home &nbsp; &nbsp; Logout </h3>
 </div>
-<div id="Layer1">
-  <h3> &nbsp; Manager Title</h3>
-  <p align="left">	&nbsp; &nbsp; <em><strong>- Add Item</strong></em><strong></strong></p>
-  <p align="left">&nbsp; &nbsp; - Deliver  </p>
-  <p align="left">&nbsp; &nbsp; - Daily Report</p>
-  <p align="left">&nbsp; &nbsp; - Top Selling</p>
-  <h3>&nbsp; </h3>
-  <h3>&nbsp; </h3>
+<div id="Menu">
+  <ul id = "Navi" class = "Menu">
+  <li> &nbsp; Manager Title</li>
+  <li><em><strong>Add Item</strong></em><strong></strong></li>
+  <li>Deliver</li>
+  <li>Daily Report</li>
+  <li>Top Selling</li>
+  </ul>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <p>&nbsp;</p>
   <p><strong>Add Item</strong>&nbsp;</p>
   <p>Item UPC:
