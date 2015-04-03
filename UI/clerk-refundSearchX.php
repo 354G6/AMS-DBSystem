@@ -8,18 +8,22 @@
 
 <body>
 <h1>&nbsp;</h1>
-<div id="Layer3">
+<div id="Header">
   <h1>AMS DBSystem CMPT 354 G6</h1>
   <h3 align="right">Home &nbsp; &nbsp; <a href="login.htm">Logout</a> </h3>
 </div>
 
-<div id="Layer1">
-  <h3> &nbsp; Item Menu</h3>
+<div id="Menu">
+  <ul id= "Navi" class = "Menu">
+  <li>Item Menu</li>
+  <ul>
   <p align="center">- DVD</p>
   <p align="center">- CD  </p>
-  <h3> &nbsp; Refund</h3>
+  </ul>
+  <li>Refund</li>
+  </ul>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <h2> <br>
   &nbsp; &nbsp;Refund</h2>
   <p>&nbsp;</p>
