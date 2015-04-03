@@ -20,11 +20,12 @@
 <div id="Menu">
   <ul id = "Navi" class = "Menu">
   <li>Manager Title</li>
+  <ul>
   <li>Add Item</li>
   <li>Deliver</li>
   <li><em><strong>Daily Report</strong></em><strong></strong></li>
   <li>Top Selling</li>
-  </ul>
+  </ul></ul>
 </div>
 <div id="Contents">
   <p>&nbsp;</p>
