@@ -4,12 +4,12 @@
 	include '../PHP/Include.php';
 	
 	//$r = CustomerRegister(123456789, "password", "name", "1234 Apple St Vancouver", 7787771234);
-	$r = CustomerLogin(123456789, "password");
+	/*$r = CustomerLogin(123456789, "password");
 	if($r == 0){
-		echo "Success!";
+		echo "Successful Login!";
 	}else{
-		echo"Fail";
-	}
+		echo"Failed Login";
+	}*/
 	
 	//test customer functions
 	/*$r = CustomerInsert(123456789, "password", "customer name", "1234 Apple St BC", 7787771234);
@@ -59,18 +59,6 @@
 	$r = HasSongDelete(123456789123, "song title");
 	echo $r;
 	
-	//test order functions
-	$r = OrderInsert(987654321, '1000-01-01 00:00:00', 123456789, 1234567891234567, '1000-01-01 00:00:00', '1000-01-01', '1000-01-01');
-	echo $r;
-	$r = OrderDisplay();
-	for($x = 0; $x < 1; $x++){
-		for($y = 0; $y < 7; $y++){
-			echo $r[$x][$y];echo " ";
-		}
-	}
-	$r = OrderDelete(987654321, 123456789);
-	echo $r;
-	
 	//test purchaseitem functions
 	$r = PurchaseItemInsert(987654321, 123456789123, 2);
 	echo $r;
@@ -81,6 +69,18 @@
 		}
 	}
 	$r = PurchaseItemDelete(987654321, 123456789123);
+	echo $r;
+	
+	//test order functions
+	$r = OrderInsert(987654321, '1000-01-01 00:00:00', 123456789, 1234567891234567, '1000-01-01 00:00:00', '1000-01-01', '1000-01-01');
+	echo $r;
+	$r = OrderDisplay();
+	for($x = 0; $x < 1; $x++){
+		for($y = 0; $y < 7; $y++){
+			echo $r[$x][$y];echo " ";
+		}
+	}
+	$r = OrderDelete(987654321, 123456789);
 	echo $r;
 	
 	//test return functions

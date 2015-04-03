@@ -6,7 +6,7 @@
 		if ($sql->connect_error) {
 			return 1;
 		}
-		if($sql->query("INSERT INTO [Return] VALUES ('$retid', '$date', '$receiptId')") === FALSE){
+		if($sql->query("INSERT INTO `Return` VALUES ('$retid', '$date', '$receiptId')") === FALSE){
 			return 2;
 		}
 		Close($sql);
@@ -18,7 +18,7 @@
 		if ($sql->connect_error) {
 			return 1;
 		}
-		if($sql->query("DELETE FROM [Return] WHERE retid = '$retid'") === FALSE){
+		if($sql->query("DELETE FROM `Return` WHERE retid = '$retid'") === FALSE){
 			return 2;
 		}
 		Close($sql);
@@ -30,7 +30,7 @@
 		if ($sql->connect_error) {
 			return 1;
 		}
-		$result = $sql->query("SELECT * FROM [Return]");
+		$result = $sql->query("SELECT * FROM `Return`");
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;

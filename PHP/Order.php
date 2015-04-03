@@ -6,7 +6,7 @@
 		if ($sql->connect_error) {
 			return 1;
 		}
-		if($sql->query("INSERT INTO [Order] VALUES ('$receiptId', '$date', '$cid', '$cardNum', '$expiryDate', '$expectedDate', '$deliveredDate')") === FALSE){
+		if($sql->query("INSERT INTO `Order` VALUES ('$receiptId', '$date', '$cid', '$cardNum', '$expiryDate', '$expectedDate', '$deliveredDate')") === FALSE){
 			return 2;
 		}
 		Close($sql);
@@ -18,7 +18,7 @@
 		if ($sql->connect_error) {
 			return 1;
 		}
-		if($sql->query("DELETE FROM [Order] WHERE receiptId = '$receiptId' AND cid = '$cid'") === FALSE){
+		if($sql->query("DELETE FROM `Order` WHERE receiptId = '$receiptId' AND cid = '$cid'") === FALSE){
 			return 2;
 		}
 		Close($sql);
@@ -30,7 +30,7 @@
 		if ($sql->connect_error) {
 			return 1;
 		}
-		$result = $sql->query("SELECT * FROM [Order]");
+		$result = $sql->query("SELECT * FROM `Order`");
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;
