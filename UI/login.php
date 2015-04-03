@@ -3,36 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Home page</title>
-<style type="text/css">
-<!--
-#Layer1 {
-	position:absolute;
-	width:710px;
-	height:400px;
-	z-index:2;
-	left: 10px;
-	top: 80px;
-}
-#Layer2 {
-	position:absolute;
-	width:710px;
-	height:70px;
-	z-index:3;
-	left: 10px;
-	top: 5px;
-}
-#Layer3 {
-	position:absolute;
-	width:345px;
-	height:193px;
-	z-index:4;
-	left: 174px;
-	top: 58px;
-}
-
-
--->
-</style>
+<link rel="stylesheet" type="text/css" href="project.css" />
 </head>
 
 <body>
