@@ -15,12 +15,13 @@
 
 <div id="Menu">
   <h3>Item menu</h3>
+  <p>
   <ul id = "Navi" class = "Menu">
   <li>DVD</li>
   <li>CD</li>
   <li>MusicSheet</li>
   <li>MusicBook</li>
-  </ul>
+  </ul></p>
   <h3> &nbsp; Shopping Cart</h3>
   <h3> &nbsp; <a href="customer-feedback.php">Feedback</a></h3>
 </div>
