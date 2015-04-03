@@ -14,24 +14,22 @@
 </div>
 
 <div id="Menu">
-  <h3>Item menu</h3>
-  <p>
-  <ul id = "Navi" class = "Menu">
+  <ul id = "Navi" class = "Menu"> <!-- this is a correct list format -->
+  <li>Item menu</li>
+  <ul>
   <li>DVD</li>
   <li>CD</li>
   <li>MusicSheet</li>
   <li>MusicBook</li>
-  </ul></p>
-  <h3> &nbsp; Shopping Cart</h3>
-  <h3> &nbsp; <a href="customer-feedback.php">Feedback</a></h3>
+  </ul>
+  <li>Shopping Cart</li>
+  <li><a href="customer-feedback.php">Feedback</a></li>
+  </ul>
 </div>
 <div id="Contents">
   <h2> <br />
   &nbsp; &nbsp;Shopping Cart</h2>
-  
-  
-	
-	</p>
+  </p>
     <div id="LeftPanel">&nbsp;&nbsp;Name of Item:<br />&nbsp;&nbsp;UPC:<br />&nbsp;&nbsp;Price:<br />&nbsp;&nbsp;Quantity:&nbsp;&nbsp;<input type="text" name="Quantity"/> Update<br />
 	&nbsp;&nbsp;Name of Item:<br />&nbsp;&nbsp;UPC:<br />&nbsp;&nbsp;Price:<br />&nbsp;&nbsp;Quantity:&nbsp;&nbsp;<input type="text" name="Quantity"/> Update<br />
   
