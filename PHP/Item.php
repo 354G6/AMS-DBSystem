@@ -46,6 +46,7 @@
 		}
 		$result = $sql->query("SELECT stock FROM Item WHERE upc = '$upc'");
 		if($result->num_rows !== 0){
+			//only one element should ever be returned to $row
 			$row = $result->fetch_row();
 			$result->close();
 			$sql->query("UPDATE Item SET stock = '$quantity' + '$row[0]' WHERE upc = '$upc'");
