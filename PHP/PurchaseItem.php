@@ -1,16 +1,19 @@
 <?php
 	include_once 'Connect.php';
 
-	function PurchaseItemInsert($receiptId, $upc, $quantity){
+	function PurchaseItemInsert($upc, $quantity){
+	$r = 2;
 		$sql = Connect();
 		if ($sql->connect_error) {
 			return 1;
 		}
-		if($sql->query("INSERT INTO PurchaseItem VALUES ('$receiptId', '$upc', '$quantity')") === FALSE){
+		if($sql->query("INSERT INTO PurchaseItem VALUES (NULL, '$upc', '$quantity')") === FALSE){
 			return 2;
+		}else{
+			$r = $sql->insert_id;;
 		}
 		Close($sql);
-		return 0;
+		return $r;
 	}
 	
 	function PurchaseItemDelete($receiptId, $upc){
@@ -39,6 +42,15 @@
 		return $table;
 	}
 	
+	function Purchase($cid, $cardNum, $upc, $quantity){
+		$lastId = PurchaseItemInsert($upc, $quantity);
+		$today = date("Y-m-d H:i:s");
+		//expected in the next week
+		$expectedDate = date('Y-m-d H:i:s', strtotime('+7 days'));
+		//delivery and expire date should be set when order is delivered
+		OrderInsert($lastId, $today, $cid, $cardNum, $expiryDate, NULL, NULL);
+	}
+	
 	//returns table rows with report info and the total price in last element of array
 	function DailyReport($date){
 		$sql = Connect();
@@ -62,6 +74,7 @@
 		return $table;
 	}
 	
+	//supply table from DailyReport as parameter, function returns daily total from date of daily report
 	function DailyTotal($table){
 		reset($table);
 		$totalPrice = 0;
