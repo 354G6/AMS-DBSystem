@@ -24,7 +24,7 @@
   <li>Feedback</li>
   </ul>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <h2> <br>
   &nbsp; &nbsp;Feedback</h2>
   <p>&nbsp;</p>
