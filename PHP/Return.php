@@ -38,7 +38,7 @@
 		Close($sql);
 		return $table;
 	}
-	function ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ){
+	function ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ, $CurrDate){
 		$sql=Connect();
 		if($sql->connect_error){
 			return 1;
@@ -51,7 +51,7 @@
 
 		$validDate = $sql->query(" SELECT receiptId
 					   FROM Order
-				           WHERE receiptId='$ReturnRecID' AND date<expiryDate")
+				           WHERE receiptId='$ReturnRecID' AND $CurrDate<expiryDate")
 		if($validRecID<>$ReturnRecID){ return 8888 } //should pop out "Purcahsed iems is beyond retrunable date" in webpage
 
 		$validUPC = $sql->query("SELECT upc
@@ -63,7 +63,8 @@
 					 FROM PurchaseItem
 				         WHERE receiptId='$ReturnRecID' AND upc='$ReturnUPC' AND $ReturnQ<=quantity")
 		if($validReQC<>$ReturnQ){ return 6666 } //should pop out "The quantity is not valid" in webpage
-
+		
+		
 		return 5555; //Item return completed.
 	}
 ?>
