@@ -8,25 +8,28 @@
 
 <body>
 <h1>&nbsp;</h1>
-<div id="Layer3">
+<div id="Header">
   <h1>AMS DBSystem CMPT 354 G6</h1>
   <h3 align="right">Home &nbsp; &nbsp; <a href="login.htm">Logout</a> </h3>
 </div>
 
-<div id="Layer1">
-  <h3> &nbsp; Item Menu</h3>
-  <p align="center">- DVD</p>
-  <p align="center">- CD  </p>
+<div id="Menu">
+  <h3>Item Menu</h3>
+  <p>
+  <ul id = "Navi" class = "Menu">
+  <li>DVD</li>
+  <li>CD</li>
+  </ul></p>
   <h3> &nbsp; Refund</h3>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <h2> <br>&nbsp; &nbsp;Refund</h2>
   <p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Receipt ID:</p>
   <p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; UPC:</p>
   <p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Amount:</p>
   <form> 
 	&nbsp;&nbsp;
-	<div id="Layer4"><p>&nbsp;&nbsp;Card Refund</p>
+	<div id="LeftPanel"><p>&nbsp;&nbsp;Card Refund</p>
 	&nbsp;&nbsp;Card Type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="text" name="Card Type"/><br /><br />
 	&nbsp;&nbsp;Cardholder Name: &nbsp;&nbsp;<input type="text" name="Cardholder Name"/><br /><br />
@@ -35,7 +38,7 @@
 	&nbsp;&nbsp;Expiry Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
 	<input type="text" name="Expiry Date"/><br /><br />
 	<p align="right"><input type="submit" name="Next"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
-	<div id="Layer5"><p>&nbsp;&nbsp;Cash Refund</p>
+	<div id="RightPanel"><p>&nbsp;&nbsp;Cash Refund</p>
 	  <p><br />
 	    <br /><br />
 	    <br />
