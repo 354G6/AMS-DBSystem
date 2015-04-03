@@ -11,7 +11,7 @@
 		if($sql->query("INSERT INTO `Return` VALUES (NULL, '$date', '$receiptId')") === FALSE){
 			return 2;
 		}else{
-			$r = $sql->insert_id();
+			$r = $sql->insert_id;
 		}
 		Close($sql);
 		return $r;
