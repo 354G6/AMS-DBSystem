@@ -59,7 +59,7 @@
 		$stmt->execute();
 		$stmt->bind_result($hash);
 		if($stmt->fetch()){
-			if(hash_equals($hash, crypt($password, $hash))){
+			if($hash == crypt($password, $hash)){
 				$r = 0;
 			}else{
 				$r = 2;
