@@ -26,7 +26,7 @@
   <li>Top Selling</li>
   </ul>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <p>&nbsp;</p>
   <p><strong>Daily Report</strong></p>
   <p>Date:&nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
