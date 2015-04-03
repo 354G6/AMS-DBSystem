@@ -13,18 +13,18 @@
 
 <body>
 <h1>&nbsp;</h1>
-<div id="Layer3">
+<div id="Header">
   <h1>AMS DBSystem CMPT 354 G6</h1>
   <h3 align="right">Home &nbsp; &nbsp; Logout </h3>
 </div>
-<div id="Layer1">
-  <h3> &nbsp; Manager Title</h3>
-  <p align="left">	&nbsp; &nbsp; <em><strong>- </strong></em>Add Item</p>
-  <p align="left">&nbsp; &nbsp; - Deliver</p>
-  <p align="left">&nbsp; &nbsp; <em><strong>- Daily Report</strong></em><strong></strong></p>
-  <p align="left">&nbsp; &nbsp; - Top Selling</p>
-  <h3>&nbsp; </h3>
-  <h3>&nbsp; </h3>
+<div id="Menu">
+  <ul id = "Navi" class = "Menu">
+  <li>Manager Title</li>
+  <li>Add Item</li>
+  <li>Deliver</li>
+  <li><em><strong>Daily Report</strong></em><strong></strong></li>
+  <li>Top Selling</li>
+  </ul>
 </div>
 <div id="Layer2">
   <p>&nbsp;</p>
