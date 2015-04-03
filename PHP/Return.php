@@ -47,7 +47,7 @@
 		if($sql->connect_error){
 			return 1;
 		}
-           // Which comparison sign whould be used: <> , !==
+           // Which comparison sign should be used: <> , !==
 		$validRecID = $sql->query(" SELECT receiptId
 					    FROM PurchaseItem
 					    WHERE receiptId='$ReturnRecID'");
