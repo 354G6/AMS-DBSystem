@@ -8,12 +8,12 @@
 
 <body>
 <h1>&nbsp;</h1>
-<div id="Layer3">
+<div id="Header">
   <h1>Company Name</h1>
   <h3 align="right"><a href="homepage.htm">Home</a> &nbsp; &nbsp; <a href="login.htm">logout</a> </h3>
 </div>
 
-<div id="Layer1">
+<div id="Menu">
   <h3> &nbsp; Item menu</h3>
   &nbsp;&nbsp;&nbsp;&nbsp;- DVD<br />
   &nbsp;&nbsp;&nbsp;&nbsp;- CD <br />
@@ -22,18 +22,18 @@
   <h3> &nbsp; Shopping Cart</h3>
   <h3> &nbsp; <a href="Feedback.htm">Feedback</a></h3>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <h2> <br />
   &nbsp; &nbsp;Shopping Cart</h2>
   
   
 	
 	</p>
-    <div id="Layer4">&nbsp;&nbsp;Name of Item:<br />&nbsp;&nbsp;UPC:<br />&nbsp;&nbsp;Price:<br />&nbsp;&nbsp;Quantity:&nbsp;&nbsp;<input type="text" name="Quantity"/> Update<br />
+    <div id="LeftPanel">&nbsp;&nbsp;Name of Item:<br />&nbsp;&nbsp;UPC:<br />&nbsp;&nbsp;Price:<br />&nbsp;&nbsp;Quantity:&nbsp;&nbsp;<input type="text" name="Quantity"/> Update<br />
 	&nbsp;&nbsp;Name of Item:<br />&nbsp;&nbsp;UPC:<br />&nbsp;&nbsp;Price:<br />&nbsp;&nbsp;Quantity:&nbsp;&nbsp;<input type="text" name="Quantity"/> Update<br />
   
 	</div>
-    <div id="Layer5">
+    <div id="RightPanel">
 	
 	<p><strong>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount</strong><br />
 	Name of Item &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$amount<br />
