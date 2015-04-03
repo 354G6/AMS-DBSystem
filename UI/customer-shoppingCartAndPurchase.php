@@ -10,17 +10,19 @@
 <h1>&nbsp;</h1>
 <div id="Header">
   <h1>Company Name</h1>
-  <h3 align="right"><a href="homepage.htm">Home</a> &nbsp; &nbsp; <a href="login.htm">logout</a> </h3>
+  <h3 align="right"><a href="homepage.htm">Home</a> &nbsp; &nbsp; <a href="login.php">logout</a> </h3>
 </div>
 
 <div id="Menu">
-  <h3> &nbsp; Item menu</h3>
-  &nbsp;&nbsp;&nbsp;&nbsp;- DVD<br />
-  &nbsp;&nbsp;&nbsp;&nbsp;- CD <br />
-  &nbsp;&nbsp;&nbsp;&nbsp;- MusicSheet<br /> 
-  &nbsp;&nbsp;&nbsp;&nbsp;- MusicBook<br />
+  <h3>Item menu</h3>
+  <ul id = "Navi" class = "Menu">
+  <li>DVD</li>
+  <li>CD</li>
+  <li>MusicSheet</li>
+  <li>MusicBook</li>
+  </ul>
   <h3> &nbsp; Shopping Cart</h3>
-  <h3> &nbsp; <a href="Feedback.htm">Feedback</a></h3>
+  <h3> &nbsp; <a href="customer-feedback.php">Feedback</a></h3>
 </div>
 <div id="Contents">
   <h2> <br />
