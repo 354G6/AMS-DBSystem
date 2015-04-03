@@ -17,12 +17,13 @@
 </div>
 <div id="Menu">
   <ul id = "Navi" class = "Menu">
-  <li> &nbsp; Manager Title</li>
+  <li>Manager Title</li>
+  <ul>
   <li><em><strong>Add Item</strong></em><strong></strong></li>
   <li>Deliver</li>
   <li>Daily Report</li>
   <li>Top Selling</li>
-  </ul>
+  </ul></ul>
 </div>
 <div id="Contents">
   <p>&nbsp;</p>
