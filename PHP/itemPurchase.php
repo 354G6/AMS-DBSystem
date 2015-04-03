@@ -3,6 +3,10 @@
 	include_once 'Order.php';
 	include_once 'PurchaseItem.php';
 	
+
+	
+	//search for item by category, title and/or leadingSinger.
+	//return array of upcs and their stock (quantity left in store)
 	function itemSearch($category, $title, $leadingSinger) {
 		$sql = Connect();
 		if ($sql->connect_error) {
@@ -20,9 +24,9 @@
 			$criteria="";
 		}
 		
-		$result = $sql->query("SELECT upc FROM Item "+$criteria);
+		$result = $sql->query("SELECT upc, title, stock FROM Item "+$criteria);
 		$table = array();
-		while($row = mysqli_fetch_array($result)){
+		while($row = mysqli_fetch_array($result)) {
 			$table[] = $row;
 		}
 		Close($sql);
@@ -31,24 +35,26 @@
 	
 	function itemPurchase($cid, $category, $title, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
 		define("MAX_DAILY_DELIVERY", 10);
-		$upc = itemSearch($category, $title, $leadingSinger);
+		$itemRecords = itemSearch($category, $title, $leadingSinger);
+		if ($itemRecords===1) {
+			return 1;
+		}
 		$expiryDate = date('YYYY-MM-DD', strtotime($expiryDate));//mysql date
 		$todayDate = date('Y-m-d H:i:s'); //mysql datetime
-		$numUpc=count($upc);
-		
-		if ($numUpc==1){
+		$numMatch=count($itemRecords);
+		if ($numMatch==1 && $itemRecords[0][2]>0){
 			$sql = Connect();
 			if ($sql->connect_error) {
 				return 1;
 			}
 			
 			//insert tuple in PurchaseItem table
-			if($sql->query("INSERT INTO PurchaseItem (upc, quantity) VALUES ('$upc', '$quantity')") === FALSE){
+			if($sql->query("INSERT INTO PurchaseItem (upc, quantity) VALUES ('$itemRecords[0][0]', '$quantity')") === FALSE){
 				return 2;
 			}
 			
 			//update inventory
-			if($sql->query("UPDATE Item SET stock=stock-1 WHERE upc='$upc'") === FALSE){
+			if($sql->query("UPDATE Item SET stock=stock-1 WHERE upc='$itemRecords[0][0]'") === FALSE){
 				return 2;
 			}
 			
@@ -56,8 +62,8 @@
 			if($countOrder = $sql->query("SELECT COUNT(receiptId) FROM Order WHERE deliveredDate=NULL") === FALSE){
 				return 2;
 			}
-			$ourstandingOrders = mysql_fetch_row($countOrder);
-			$days = (int) ($ourstandingOrders/MAX_DAILY_DELIVERY)+1;
+			$outstandingOrders = (int) mysql_fetch_row($countOrder);
+			$days = (int) ($outstandingOrders/MAX_DAILY_DELIVERY)+1;
 			$expectedDate = date('YYYY-MM-DD', strtotime("+".$days." days", strtotime($todayDate)));
 			
 			//insert tuple in Order table
@@ -65,7 +71,10 @@
 				return 2;
 			}
 			Close($sql);
-		} elseif ($numUpc<1) return 3; //meaning no item matches the criteria
-		return 4; //meaning more than one item matches the criteria
+		}
+		elseif ($numMatch<1) return 3; //meaning no item matches the criteria
+		elseif ($numMatch>1) return $itemRecords; //meaning more than one item matches the criteria
+		elseif ($numMatch==1 && $itemRecords[0][2]<=0) return 4; //item out of stock
+		else return null;
 	}
 	
