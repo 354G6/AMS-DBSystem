@@ -3,6 +3,9 @@
 	//tests are currently in wrong order, foreign keys won't work
 	include '../PHP/Include.php';
 	
+	$r = AddItems(123456789123, 2);
+	echo $r;
+	
 	/*$r = DailyReport('1000-01-01');
 	for($x = 0; $x < count($r); $x++){
 		for($y = 0; $y < count($r[$x]); $y++){

@@ -50,23 +50,23 @@
            // Which comparison sign whould be used: <> , !==
 		$validRecID = $sql->query(" SELECT receiptId
 					    FROM PurchaseItem
-					    WHERE receiptId='$ReturnRecID'")
-		if($validRecID<>$ReturnRecID){ return 9999 }  //should pop out "Receipt ID is invalid" in webpage
+					    WHERE receiptId='$ReturnRecID'");
+		if($validRecID<>$ReturnRecID){ return 9999; }  //should pop out "Receipt ID is invalid" in webpage
 
 		$validDate = $sql->query(" SELECT receiptId
 					   FROM Order
-				           WHERE receiptId='$ReturnRecID' AND $CurrDate<expiryDate")
-		if($validRecID<>$ReturnRecID){ return 8888 } //should pop out "Purcahsed iems is beyond retrunable date" in webpage
+				           WHERE receiptId='$ReturnRecID' AND $CurrDate<expiryDate");
+		if($validRecID<>$ReturnRecID){ return 8888; } //should pop out "Purcahsed iems is beyond retrunable date" in webpage
 
 		$validUPC = $sql->query("SELECT upc
 					 FROM PurchaseItem
-				         WHERE receiptId='$ReturnRecID' AND upc='$ReturnUPC'")
-		if($validUPC<>$ReturnUPC){ return 7777 } //should pop out "Did not purchase the given item" in webpage
+				         WHERE receiptId='$ReturnRecID' AND upc='$ReturnUPC'");
+		if($validUPC<>$ReturnUPC){ return 7777; } //should pop out "Did not purchase the given item" in webpage
 
 		$validReQ = $sql->query("SELECT quantity
 					 FROM PurchaseItem
-				         WHERE receiptId='$ReturnRecID' AND upc='$ReturnUPC' AND $ReturnQ<=quantity")
-		if($validReQC<>$ReturnQ){ return 6666 } //should pop out "The quantity is not valid" in webpage
+				         WHERE receiptId='$ReturnRecID' AND upc='$ReturnUPC' AND $ReturnQ<=quantity");
+		if($validReQC<>$ReturnQ){ return 6666; } //should pop out "The quantity is not valid" in webpage
 		
 		//should return last auto_incremented id and pass to ReturnItemInsert as associated retid
 		$lastId = ReturnInsert($CurrDate, $ReturnRecID); //

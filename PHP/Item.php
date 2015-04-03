@@ -48,7 +48,7 @@
 		if($result->num_rows !== 0){
 			$row = $result->fetch_row();
 			$result->close();
-			$sql->query("UPDATE Item SET stock = '$quantity' + '$row[7]' WHERE upc = '$upc'");
+			$sql->query("UPDATE Item SET stock = '$quantity' + '$row[0]' WHERE upc = '$upc'");
 		}else{
 			//item upc is not in Item table
 			return 2;
