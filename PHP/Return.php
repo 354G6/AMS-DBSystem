@@ -1,16 +1,20 @@
 <?php
 	include_once 'Connect.php';
+	include_once 'ReturnItem.php';
 
-	function ReturnInsert($retid, $date, $receiptId){
+	function ReturnInsert($date, $receiptId){
+		$r = 2;
 		$sql = Connect();
 		if ($sql->connect_error) {
 			return 1;
 		}
-		if($sql->query("INSERT INTO `Return` VALUES ('$retid', '$date', '$receiptId')") === FALSE){
+		if($sql->query("INSERT INTO `Return` VALUES (NULL, '$date', '$receiptId')") === FALSE){
 			return 2;
+		}else{
+			$r = $sql->insert_id();
 		}
 		Close($sql);
-		return 0;
+		return $r;
 	}
 	
 	function ReturnDelete($retid){
@@ -64,8 +68,9 @@
 				         WHERE receiptId='$ReturnRecID' AND upc='$ReturnUPC' AND $ReturnQ<=quantity")
 		if($validReQC<>$ReturnQ){ return 6666 } //should pop out "The quantity is not valid" in webpage
 		
-		//after verified receiptID, date, quantiy, how to insert items into 'Return' Table and 'ReturnItem' Table
-		ReturnInsert($retid, $CurrDate, $ReturnRecID); //
+		//should return last auto_incremented id and pass to ReturnItemInsert as associated retid
+		$lastId = ReturnInsert($CurrDate, $ReturnRecID); //
+		ReturnItemInsert($lastId, $ReturnUPC, $ReturnQ);
 		
 		//
 		

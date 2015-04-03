@@ -1,12 +1,12 @@
 <?php
 	include_once 'Connect.php';
 
-	function ReturnItemInsert($retid, $upc){
+	function ReturnItemInsert($retid, $upc, $quantity){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			return 1;
 		}
-		if($sql->query("INSERT INTO ReturnItem VALUES ('$retid', '$upc')") === FALSE){
+		if($sql->query("INSERT INTO ReturnItem VALUES ('$retid', '$upc', '$quantity')") === FALSE){
 			return 2;
 		}
 		Close($sql);

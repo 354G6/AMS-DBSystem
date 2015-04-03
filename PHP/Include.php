@@ -1,10 +1,10 @@
 <?php
-	include 'Item.php';
-	include 'LeadSinger.php';
-	include 'HasSong.php';
-	include 'Order.php';
-	include 'Customer.php';
-	include 'PurchaseItem.php';
-	include 'Return.php';
-	include 'ReturnItem.php';
+	include_once 'Item.php';
+	include_once 'LeadSinger.php';
+	include_once 'HasSong.php';
+	include_once 'Order.php';
+	include_once 'Customer.php';
+	include_once 'PurchaseItem.php';
+	include_once 'Return.php';
+	include_once 'ReturnItem.php';
 ?>
