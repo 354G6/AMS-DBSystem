@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Shopping Cart and Purchase</title>
-<link rel="stylesheet" type="text/css" href="project.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/project.css" />
 </head>
 
 <body>
