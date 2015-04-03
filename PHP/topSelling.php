@@ -5,8 +5,8 @@
 
 
 
-SELECT TOP $TopNum upc, sum(quantity) AS 'Quantities Sold'
+SELECT TOP $TopNum P.upc, sum(P.quantity) AS 'Quantities Sold'
 FROM PurchaseItem P, Order O
 WHERE P.receiptid=O.receiptid, O.date='$date'
-GROUP BY upc
-ORDER BY sum(quantity) DESC
+GROUP BY P.upc
+ORDER BY sum(P.quantity) DESC
