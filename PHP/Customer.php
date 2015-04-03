@@ -41,11 +41,11 @@
 	
 	//calls CustomerInsert() but hashes password first
 	function CustomerRegister($cid, $password, $name, $address, $phone){
-		$cost = 10;
-		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-		$salt = sprintf("$2a$%02d$", $cost) . $salt;
-		$hash = crypt($password, $salt);
-		return CustomerInsert(CustomerRegister($cid, $hash, $name, $address, $phone));
+		//$cost = 10;
+		//$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+		//$salt = sprintf("$2a$%02d$", $cost) . $salt;
+		$hash = crypt($password);
+		return CustomerInsert($cid, $hash, $name, $address, $phone);
 	}
 	
 	function CustomerLogin($cid, $password){

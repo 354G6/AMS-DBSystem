@@ -54,7 +54,7 @@
 							   ON PurchaseItem.receiptId=Order.receiptId
 							   WHERE DATE(`date`) = '$date';
 							   GROUP BY upc");
-		$table = array()
+		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;
 		}
