@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Home page</title>
-<link rel="stylesheet" type="text/css" href="project.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/project.css" />
 <link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css" />
 <link href="jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css" />
 <link href="jQueryAssets/jquery.ui.datepicker.min.css" rel="stylesheet" type="text/css" />
