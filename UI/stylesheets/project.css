@@ -60,13 +60,13 @@ body {
 	display: inline;
 }
 
-ul.menu {
+ul.Menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-ul.menu>li {
+ul.Menu>li {
     padding: 5px 0 5px 0;
 }
 
@@ -75,13 +75,13 @@ ul#Navi>li {
 	color: #222222;
 }
 
-a.menu {
+a.Menu {
 	text-decoration: none;
 	padding-right: 10px;
     color:#555555;
 }
 
-a.menu:hover {
+a.Menu:hover {
     color:#222222;
     text-decoration: underline;
 }
