@@ -3,51 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Refund Search</title>
-<style type="text/css">
-<!--
-#Layer1 {
-	position:absolute;
-	width:159px;
-	height:433px;
-	z-index:1;
-	top: 79px;
-	left: 11px;
-}
-#Layer2 {
-	position: absolute;
-	width: 543px;
-	height: 442px;
-	z-index: 2;
-	left: 171px;
-	top: 79px;
-}
-#Layer3 {
-	position:absolute;
-	width:704px;
-	height:73px;
-	z-index:3;
-	left: 10px;
-	top: 5px;
-}
-#Layer4 {
-	position: absolute;
-	width: 325px;
-	height: 286px;
-	z-index: 4;
-	left: 0px;
-	top: 187px;
-}
-#Layer5 {
-	position: absolute;
-	width: 217px;
-	height: 266px;
-	z-index: 4;
-	left: 328px;
-	top: 186px;
-}
-
--->
-</style>
+<link rel="stylesheet" type="text/css" href="project.css" />
 </head>
 
 <body>
