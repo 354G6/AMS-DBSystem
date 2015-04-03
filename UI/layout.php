@@ -1,114 +1,63 @@
+<?php
+session_start();
+//header('Location: homepage.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Home page</title>
-<style type="text/css">
-body {
-	font-family: Arial, Helvetica, sans-serif;
-}
-#Header {
-	position:relative;
-	width:900px;
-	background-color:#EEEEEE;
-	padding:10px 30px;
-}
-
-#Header>h1 {
-	padding-bottom:0;
-	margin-bottom:0;
-	color:#000000;
-}
-
-#Header>h3 {
-	padding:0px;
-	margin: 0px;
-	display:inline;
-	color: #555555;
-}
-#Header>ul {
-	float: right;
-	padding-right:30px;
-}
-#Contents {
-	float: left;
-	width: 900px;
-}
-#Contents>#LeftPanel {
-	clear: left;
-	float: left;
-	width: 200px;
-	padding: 20px 0;
-	margin: 0 0 0 30px;
-	display: inline;
-}
-#Contents>#RightPanel {
-	float: right;
-	width: 650px;
-	padding: 20px 0;
-	display: inline;
-}
-
-ul.menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-ul#Navi>li {
-    display: inline;
-	color: #222222;
-}
-
-a.menu {
-	text-decoration: none;
-	padding-right: 20px;
-}
-</style>
+<title>Allegro Music Store DBSystem | CMPT354 G6</title>
+<link type="text/css" rel="stylesheet" href="stylesheets/project.css">
 </head>
 
 <body>
 <?
-//list of operations
+//list of operations and pages
 $operations = array();
-$pages = array();
-$role=$_POST["role"];
-//customer ($role=cus)
-if (role="cus") {
+
+//test data
+//$operations = array(
+//                "addItem"=>"Add Items to Store",
+//                "procDelivery"=>"Process Delivery of Order",
+//                "dailySales"=>"Generate Daily Sales Report",
+//                "topSelling"=>"Get Top Selling Items"
+//                );
+
+//exception when registering
+if ($_GET["op"]=="register" || $_GET["op"]=="procReg") $_SESSION["role"]="guest";
+
+if ($_GET["op"]=="login") session_unset();
+
+echo "[DEBUG] YOUR ROLE: (".$_SESSION["role"]."); OPERATION: (".$_GET["op"].")";
+
+//customer ($role=cust) 
+if ($_SESSION["role"]=="customer") {
 	$operations = array(
-					"Purchase Item",
-					"Give Feedback"
-					);
-	$pages = array(
-					"itemPurchase",
-					"feedback"
+					"itemPurchase"=>"Purchase Item",
+					"feedback"=>"Give Feedback"
 					);
 }
 
-//manager ($role=man)
-elseif (role="man") {
+//manager ($role=mana)
+elseif ($_SESSION["role"]=="manager") {
 	$operations = array(
-					"Add Items to Store",
-					"Process Delivery of Order",
-					"Generate Daily Sales Report",
-					"Get Top Selling Items"
-					);
-	$pages = array(
-					"addItem",
-					"processDelivery",
-					"dailySales",
-					"topSelling"
+				    "addItem"=>"Add Items to Store",
+				    "procDelivery"=>"Process Delivery of Order",
+				    "dailySales"=>"Generate Daily Sales Report",
+				    "topSelling"=>"Get Top Selling Items"
 					);
 }
 
 //clerk ($role=clerk)
-elseif (role="clerk") {
+elseif ($_SESSION["role"]=="clerk") {
 	$operations = array(
-					"Process Return"
+					"processReturn"=>"Process Return"
 					);
-	$pages = array(
-					"processReturn"
-					);
+}
+elseif ($_SESSION["role"]=="guest") {}
+
+else {
+    //session_unset();
 }
 ?>
 
@@ -116,28 +65,32 @@ elseif (role="clerk") {
   <h1 id="AppName">Allegro Music Store DBSystem</h1>
   <h3 id="Author">CMPT354 G6</h3>
   <ul id="Navi" class="menu">
-	<li><a class="menu" href="homepage.php">Home</a></li>
-	<li><a class="menu" href="login.php">Logout</a></li>
+	<li><a class="menu" href="?op=home">Home</a></li>
+	<? if (isset($_SESSION["role"]) && $_SESSION["role"]!="guest") echo'<li><a class="menu" href="?op=login">Logout</a></li>';?>
   </ul>
 </div>
 <div id="Contents">
 	<div id="LeftPanel">
-	<h4><?php echo $role ?> Menu</h4>
+	    <h4 class="menu"><?php if (isset($_SESSION["role"]) && $_SESSION["role"]!="guest") echo $_SESSION["role"].' Menu'; ?></h4>
 		<ul id="OperationList" class="menu">
-			<li><a class="menu" href="?op=op1">Operation1</a></li>
-			<li><a class="menu" href="?op=op2">Operation2</a></li>
-			<?
-			foreach($operations as $op) {
+			<?php
+            $i = 0;
+			foreach($operations as $page => $op) {
 				echo '<li><a class="menu" href="?op='.$page.'">'.$op.'</a></li>';
+                $i++;
 			}
 			?>
 		</ul>
 	</div>
 	<div id="RightPanel">
-	  <h2>RightPanel</h2>
-	  <?php include();?>
-	  abcd
+	  <div>[DEBUG]Operation: <?echo $_GET['op'];?></div>
+	  <div>[DEBUG]Contents:</div>
+      <?php include('rightPanel.php');?>
 	</div>
+</div>
+<div id="Footer">
+    <div id="copyright">(C) Copyright 2015 Spring CMPT354 Group 6</div>
+    <div> Group Members: Ricky Wong, Yaolong Lin, Nicholas Walsh, Alan Li, Venus Ye</div>
 </div>
 </body>
 </html>
