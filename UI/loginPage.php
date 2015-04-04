@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //include dirname(__FILE__) . "core/Customer.php";
     
-        $result = 0; //= CustomerLogin($_POST['login_id'], $_POST['password'])
+        $result = 0; //= CustomerLogin($loginID, $password)
         if ($result == 0) {
             $_SESSION['role']="manager"; //get this from the core login function???
 
