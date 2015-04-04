@@ -6,9 +6,7 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/project.css" />
 <link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css" />
 <link href="jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css" />
-<link href="jQueryAssets/jquery.ui.datepicker.min.css" rel="stylesheet" type="text/css" />
 <script src="jQueryAssets/jquery-1.8.3.min.js" type="text/javascript"></script>
-<script src="jQueryAssets/jquery-ui-1.9.2.datepicker.custom.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -21,26 +19,37 @@
   <ul id = "Navi" class = "Menu">
   <li>Manager Title</li>
   <ul>
-  <li>Add Item</li>
+  <li><em><strong>Add Item</strong></em><strong></strong></li>
   <li>Deliver</li>
   <li>Daily Report</li>
-  <li><em><strong>Top Selling</strong></em></li>
+  <li>Top Selling</li>
   </ul></ul>
 </div>
 <div id="Contents">
   <p>&nbsp;</p>
-  <p><strong>Top Selling Items</strong> &nbsp;</p>
-  <p>Date: 
-    <input type="text" id="Datepicker1" />
-  &nbsp;Top Items:  
-  <input type="text" name="TopNum" id="TopNum"/>
-   &nbsp;
-   <input type="submit" name="Next"/>
+  <p><strong>Add Item</strong>&nbsp;</p>
+  <p>Item UPC:
+    <input type="text" name="itemUPC" id="itemUPC"/>
+  </p>
+  <p>Quantity:&nbsp; &nbsp;
+    <input type="text" name="addQuant" id="addQuant"/>
+  </p>
+  <p>Price:&nbsp; &nbsp;
+&nbsp; &nbsp;&nbsp;
+<input type="text" name="addPrice" id="addPrice"/>
+  </p>
+  <p>    &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp;
+<input type="submit" name="Next"/>
   </p>
 </div>
-<script type="text/javascript"> $(function() {
-	$( "#Datepicker1" ).datepicker(); });
-  </script>
 </body>
 
 </html>

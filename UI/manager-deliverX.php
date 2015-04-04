@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Home page</title>
-<link rel="stylesheet" type="text/css" href="project.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/project.css" />
 <link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css" />
 <link href="jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css" />
 <link href="jQueryAssets/jquery.ui.datepicker.min.css" rel="stylesheet" type="text/css" />
@@ -13,20 +13,21 @@
 
 <body>
 <h1>&nbsp;</h1>
-<div id="Layer3">
+<div id="Header">
   <h1>AMS DBSystem CMPT 354 G6</h1>
   <h3 align="right">Home &nbsp; &nbsp; Logout </h3>
 </div>
-<div id="Layer1">
-  <h3> &nbsp; Manager Title</h3>
-  <p align="left">	&nbsp; &nbsp; <em><strong>- </strong></em>Add Item</p>
-  <p align="left">&nbsp; &nbsp;<strong><em> - Deliver</em></strong><em><strong></strong></em></p>
-  <p align="left">&nbsp; &nbsp; - Daily Report</p>
-  <p align="left">&nbsp; &nbsp; - Top Selling</p>
-  <h3>&nbsp; </h3>
-  <h3>&nbsp; </h3>
+<div id="Menu">
+  <ul id = "Navi" class = "Menu">
+  <li>Manager Title</li>
+  <ul>
+  <li>Add Item</li>
+  <li><strong><em>Deliver</em></strong></li>
+  <li>Daily Report</li>
+  <li>Top Selling</li>
+  </ul></ul>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <p>&nbsp;</p>
   <p><strong>Deliver</strong></p>
   <p>Receipt ID:

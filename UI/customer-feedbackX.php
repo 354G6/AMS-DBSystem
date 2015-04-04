@@ -3,24 +3,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Feedback</title>
-<link rel="stylesheet" type="text/css" href="project.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/project.css" />
 </head>
 
 <body>
 <h1>&nbsp;</h1>
-<div id="Layer3">
+<div id="Header">
   <h1>AMS DBSystem CMPT 354 G6</h1>
   <h3 align="right">Home &nbsp; &nbsp; Logout </h3>
 </div>
 
-<div id="Layer1">
-  <h3> &nbsp; Item Menu</h3>
-  <p align="center">- DVD</p>
-  <p align="center">- CD  </p>
-  <h3> &nbsp; Shopping Cart</h3>
-  <h3> &nbsp; Feedback</h3>
+<div id="Menu">
+  <ul id = "Navi" class = "Menu">
+  <li>Item Menu</li>
+  <ul>
+  <li>DVD</li>
+  <li>CD</li>
+  </ul>
+  <li>Shopping Cart</li>
+  <li>Feedback</li>
+  </ul>
 </div>
-<div id="Layer2">
+<div id="Contents">
   <h2> <br>
   &nbsp; &nbsp;Feedback</h2>
   <p>&nbsp;</p>

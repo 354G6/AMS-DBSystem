@@ -114,9 +114,12 @@ a:hover {
 .formAction>input[type="submit"] {
  	float:right;
 }
+<<<<<<< HEAD
 
 .feedbackMessage {
 	padding: 10px;
 	margin-bottom: 10px;
 	background-color: #EEEEEE;
 }
+=======
+>>>>>>> origin/master
