@@ -1,5 +1,5 @@
 <?php
-	// Returns an object which represents the connection to a MySQL Server.
+	//Returns an object which represents the connection to a MySQL Server.
 	function Connect(){
 		$sql = null;
 		if (isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'],'Google App Engine') !== false) {
@@ -12,7 +12,7 @@
 		return $sql;
 	}
 	
-	// closes an object which represents the connection to a MySQL Server.
+	//closes an object which represents the connection to a MySQL Server.
 	function Close($sql){
 		$sql->close();
 	}
