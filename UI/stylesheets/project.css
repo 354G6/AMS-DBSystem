@@ -114,3 +114,9 @@ a:hover {
 .formAction>input[type="submit"] {
  	float:right;
 }
+
+.feedbackMessage {
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: #EEEEEE;
+}
