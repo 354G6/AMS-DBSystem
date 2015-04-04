@@ -7,4 +7,7 @@
 	include_once 'PurchaseItem.php';
 	include_once 'Return.php';
 	include_once 'ReturnItem.php';
+	
+	include_once 'itemPurchase.php';
+	include_once 'topSelling.php';
 ?>
