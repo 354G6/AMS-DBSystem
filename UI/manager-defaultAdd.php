@@ -47,7 +47,7 @@ function filter($data) {
 <h3>Add Item</h3>
 <div class="feedbackMessage"><?echo $returnMessage?></div>
 <div class="instruction">(* required)</div>
-<form action="?op=<?echo $_GET['op']?>" method="POST">
+<form action="?op=<?echo $_GET['op']?>" method="POST" autocomplete="off">
     <div class="textEntry">Item UPC*: <input type="number" name="itemUPC" placeholder="e.g. 1 23456 78999 9" id="itemUPC" value="<?echo $_POST["itemUPC"]?>" required/></div>
     <div class="textEntry">Add Quantity*: <input type="number" name="addQuant" placeholder="e.g. 120" id="addQuant" value="<?echo $_POST["addQuant"]?>" required/></div>
     <div class="textEntry">New Price: <input type="number" name="addPrice" placeholder="e.g. 25" id="addPrice" value="<?echo $_POST["addPrice"]?>"/></div>

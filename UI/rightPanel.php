@@ -16,12 +16,15 @@ else {
             break;
             
         //customer
-        case "purchase": //to be done (ALAN)
-            include('customer-shoppingCartAndPurchase.php');
+        case "purchase": //to be done (RICKY)
+            include('customer-purchase.php');
+            break;
+        case "cart": //to be done (RICKY)
+            include('customer-shoppingCart.php');
             break;
             
         //manager
-        case "additem": //to be done (RICKY)
+        case "additem":
             include('manager-defaultAdd.php');
             break;
         case "procdeliver": //to be done

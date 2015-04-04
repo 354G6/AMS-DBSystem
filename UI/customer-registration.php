@@ -54,7 +54,7 @@ function filter($data) {
 <h2>Customer Registration</h2>
 <div class="feedbackMessage"><?echo $returnMessage?></div>
 <div class="instruction">* required</div>
-<form action="?op=<?echo $_GET['op'];?>" method="POST">
+<form action="?op=<?echo $_GET['op'];?>" method="POST" autocomplete="off">
     <div class="textEntry">Login ID*: <input type="text" name="cid" placeholder="e.g. jsmith" value="<?echo $_POST["cid"]?>" required /> <span class="error"></span></div>
     <div class="textEntry">Full Name: <input type="text" name="name"  placeholder="e.g. John Smith" value="<?echo $_POST["name"]?>"/> <span class="error"></span></div>
     <div class="textEntry">Password*: <input type="password" name="password"  placeholder="" required /> <span class="error"></span></div>

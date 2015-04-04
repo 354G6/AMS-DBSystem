@@ -52,7 +52,7 @@ function filter($data) {
 ?>
 <div class="entryBox" id="loginBox">
 <h2>Login</h2>
-<form action="?op=<? echo $_GET["op"]?>" method="post"> 
+<form action="?op=<? echo $_GET["op"]?>" method="post" autocomplete="off"> 
     <div class="textEntry">Login ID: <input type="text" name="login_id" placeholder="e.g. jsmith" value="<?echo $_POST["login_id"]?>" required/></div>
     <div class="textEntry">Password: <input type="password" name="password" placeholder="" required/></div>
     <div class="formAction"><a href="?op=register">Register</a> <input type="submit" value="Log in" /></div>

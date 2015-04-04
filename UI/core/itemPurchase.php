@@ -24,7 +24,7 @@
 			$criteria="";
 		}
 		
-		$result = $sql->query("SELECT upc, title, stock FROM Item "+$criteria);
+		$result = $sql->query("SELECT upc, title, price, stock FROM Item "+$criteria);
 		$table = array();
 		while($row = mysqli_fetch_array($result)) {
 			$table[] = $row;

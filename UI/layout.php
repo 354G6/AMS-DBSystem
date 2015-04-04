@@ -33,7 +33,8 @@ echo "[DEBUG] YOUR ROLE: (".$_SESSION["role"]."); OPERATION: (".$_GET["op"].")";
 //customer ($role=cust) 
 if ($_SESSION["role"]=="customer") {
 	$operations = array(
-					"purchase"=>"Purchase Item"
+					"purchase"=>"Buy Items",
+                    "cart"=>"View Shopping Cart"
 					);
 }
 
@@ -65,7 +66,7 @@ else {
   <h3 id="Author">CMPT354 G6</h3>
   <ul id="Navi" class="menu">
 	<li><a class="menu" href="?op=home">Home</a></li>
-	<? if (isset($_SESSION["role"]) && $_SESSION["role"]!="guest") echo'<li><a class="menu" href="?op=login">Logout</a></li>';?>
+    <? if (isset($_SESSION["role"]) && $_SESSION["role"]!="guest") echo'<li><a class="menu" href="?op=login">Logout</a></li>';?>
   </ul>
 </div>
 <div id="Contents">
