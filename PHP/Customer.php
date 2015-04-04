@@ -41,12 +41,12 @@
 		return $table;
 	}
 	
-	//calls CustomerInsert() but hashes password first
+	//calls CustomerInsert() but hashes password with salt first
 	function CustomerRegister($cid, $password, $name, $address, $phone){
-		//$cost = 10;
-		//$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-		//$salt = sprintf("$2a$%02d$", $cost) . $salt;
-		$hash = crypt($password);
+		$cost = 10;
+		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+		$salt = sprintf("$2a$%02d$", $cost) . $salt;
+		$hash = crypt($password, $salt);
 		CustomerInsert($cid, $hash, $name, $address, $phone);
 	}
 	
@@ -68,8 +68,6 @@
 		if($stmt->fetch()){
 			if($hash == crypt($password, $hash)){
 				$r = 0;
-			}else{
-				$r = -1;
 			}
 		}
 		Close($sql);

@@ -17,17 +17,17 @@
 	$t = DailyTotal($r);
 	echo $t;*/
 	
-	//$r = CustomerRegister(123456789, "password", "name", "1234 Apple St Vancouver", 7787771234);
-	/*$r = CustomerLogin(123456789, "password");
+	//CustomerRegister(123456788, "password", "name", "1234 Apple St Vancouver", 7787771234);
+	$r = CustomerLogin(123456788, "password");
 	if($r == 0){
 		echo "Successful Login!";
 	}else{
 		echo"Failed Login";
-	}*/
+	}
 	
 	//test customer functions
-	$r = CustomerInsert(123456789, "password", "customer name", "1234 Apple St BC", 7787771234);
-	/*echo $r;
+	/*$r = CustomerInsert(123456789, "password", "customer name", "1234 Apple St BC", 7787771234);
+	echo $r;
 	$r = CustomerDisplay();
 	for($x = 0; $x < 1; $x++){
 		for($y = 0; $y < 5; $y++){
