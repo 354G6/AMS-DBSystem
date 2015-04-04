@@ -19,15 +19,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //clear form data
         $_POST["login_id"]="";
 
-        //include dirname(__FILE__) . "core/Customer.php";
+        include "core/Customer.php";
     
-        $result = 0; //= CustomerLogin($loginID, $password)
+        $result = CustomerLogin($loginID, $password);
         if ($result == 0) {
-            $_SESSION['role']="manager"; //get this from the core login function???
-
-            echo "<script>window.location = '?op=home'</script>";
-        }
-        else {
+            $_SESSION['role']="customer";
+			echo "<script>window.location = '?op=home'</script>";
+        }else if($result == 1){
+			$_SESSION['role']="clerk";
+			echo "<script>window.location = '?op=home'</script>";
+		}else if($result == 2){
+			$_SESSION['role']="manager";
+			echo "<script>window.location = '?op=home'</script>";
+        }else {
             $errorMessage = array( '',
                                 'Unable to connect to the database.',
                                 'Failed executing query.'

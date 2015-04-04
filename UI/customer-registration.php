@@ -23,9 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST["address"]="";
         $_POST["phone"]="";
         
-        //include dirname(__FILE__) . "core/Customer.php";
+        include "core/Customer.php";
         $returnMessage="";
-        $result = 0; //= CustomerRegister($cid, $password, $name, $address, $phone)
+        //$result = 0; 
+		CustomerRegister($cid, $password, $name, $address, $phone);
         if (result == 0) {
             $returnMessage='Registered successfully!<br>Please <a href="?op=login">>>Click Here to Log In<<</a>';
             //echo '<script>alert("Registered successfully!\nPlease Log In using your ID and Password.");</script>';
