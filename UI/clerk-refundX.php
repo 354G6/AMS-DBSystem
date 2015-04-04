@@ -1,22 +1,23 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$validated=true;
-	$cid = $name = $password = $cpw = $address = $phone = "";
-
+	$ReturnRecID = $ReturnUPC = $ReturnQ = "";
+	
 	//filter input data
-	$cid = filter($_POST["cid"]);
-	$name = filter($_POST["name"]);
-	$password = $_POST["password"];
+	$ReturnRecID = filter($_POST["ReturnRecID"]);
+	$ReturnUPC = filter($_POST["ReturnUPC"]);
+	$ReturnQ = $_POST["ReturnQ"];
 	
 	//validate
-	if ($cid==""||$password==""||$cpw==""||$password!=$cpw) {
+	if ($ReturnRecID==""||$ReturnUPC=="") {
 		$validated=false;
 	}
+	
 	if ($validated) {
 		//clear form data
-		$_POST["cid"]="";
-		$_POST["name"]="";
-		$_POST["address"]="";
+		$_POST["ReturnRecID"]="";
+		$_POST["ReturnUPC"]="";
+		$_POST["ReturnQ"]="";
 	} else {
 		
 	}
@@ -32,21 +33,9 @@ function filter($data) {
 
 <div id="Refund">
   <h2>Refund</h2>
-  <form>
-  <p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Receipt ID:</p>
-  <p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; UPC:</p>
-  <p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Amount:</p>
-	&nbsp;&nbsp;
-	<div id="LeftPanel"><p>&nbsp;&nbsp;Card Refund</p>
-	&nbsp;&nbsp;Card Type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="text" name="Card Type"/><br /><br />
-	&nbsp;&nbsp;Cardholder Name: &nbsp;&nbsp;<input type="text" name="Cardholder Name"/><br /><br />
-	&nbsp;&nbsp;Card No.:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="text" name="Card No."/><br /><br />
-	&nbsp;&nbsp;Expiry Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-	<input type="text" name="Expiry Date"/><br /><br />
-	<p align="right"><input type="submit" name="Next"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
+  <form action="?op=<?echo $_GET['op'];?>" method="POST">
+  <div class="textEntry">Receipt ID: <input type="text" name="ReturnRecID" placeholder="e.g. 35803" value="<?echo $_POST["ReturnRecID"]?>" required /> <span class="error"></span></div>  
+  <div class="textEntry">UPC: <input type="text" name="ReturnUPC" placeholder="e.g. 3580380428342" value="<?echo $_POST["ReturnUPC"]?>" required /> <span class="error"></span></div>
+  <div class="textEntry">Amount: <input type="text" name="ReturnQ" placeholder="e.g. 3" value="<?echo $_POST["ReturnQ"]?>" required /> <span class="error"></span></div>
   </form>
 </div>
-</body>
-</html>
