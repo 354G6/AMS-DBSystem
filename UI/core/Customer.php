@@ -51,26 +51,32 @@
 	}
 	
 	
-	//returns 0 for successful login, -1 for failure
+	//returns 0 for successful login, 1 for clerk, 2 for manager, -1 for failure
 	function CustomerLogin($cid, $password){
 		$r = -1;
-		$sql = Connect();
-		if ($sql->connect_error) {
-			echo $sql->connect_error;
-		}
-		//this is a stupid way to retrieve hash, fix this
-		$stmt = $sql->prepare("SELECT password FROM Customer WHERE cid = '$cid'");
-		$r = $stmt->execute();
-		if($r === FALSE){
-			echo $stmt->error;
-		}
-		$stmt->bind_result($hash);
-		if($stmt->fetch()){
-			if($hash == crypt($password, $hash)){
-				$r = 0;
+		if(($cid == 111111111) && ($password == "password")){
+			$r = 1;//make sure manually add to db
+		}else if(($cid == 222222222) && ($password == "password")){
+			$r = 2;//make sure manually add to db
+		}else{
+			$sql = Connect();
+			if ($sql->connect_error) {
+				echo $sql->connect_error;
 			}
+			//this is a stupid way to retrieve hash, fix this
+			$stmt = $sql->prepare("SELECT password FROM Customer WHERE cid = '$cid'");
+			$r = $stmt->execute();
+			if($r === FALSE){
+				echo $stmt->error;
+			}
+			$stmt->bind_result($hash);
+			if($stmt->fetch()){
+				if($hash == crypt($password, $hash)){
+					$r = 0;
+				}
+			}
+			Close($sql);
 		}
-		Close($sql);
 		return $r;
 	}
 ?>
