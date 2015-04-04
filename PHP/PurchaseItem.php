@@ -1,14 +1,14 @@
 <?php
 	include_once 'Connect.php';
 
+	// returns an auto_increment id from insert
 	function PurchaseItemInsert($upc, $quantity){
-	$r = 2;
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		if($sql->query("INSERT INTO PurchaseItem VALUES (NULL, '$upc', '$quantity')") === FALSE){
-			return 2;
+			echo $sql->error;
 		}else{
 			$r = $sql->insert_id;;
 		}
@@ -19,21 +19,24 @@
 	function PurchaseItemDelete($receiptId, $upc){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		if($sql->query("DELETE FROM PurchaseItem WHERE receiptId = '$receiptId' AND upc = '$upc'") === FALSE){
-			return 2;
+			echo $sql->error;
 		}
 		Close($sql);
-		return 0;
 	}
 	
+	// returns a 2d array containing data from the PurchaseItem table
 	function PurchaseItemDisplay(){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		$result = $sql->query("SELECT * FROM PurchaseItem");
+		if($result === FALSE){
+			echo $sql->error;
+		}
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;
@@ -55,7 +58,7 @@
 	function DailyReport($date){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		//$date format must be yyyy-mm-dd
 		$result = $sql->query("SELECT Item.upc, category, ROUND((price*SUM(quantity)), 2) AS price, SUM(quantity)
@@ -66,6 +69,9 @@
 							   ON PurchaseItem.receiptId=Order.receiptId
 							   WHERE '$date' = date(`Order`.`date`)
 							   GROUP BY Item.upc");
+		if($result === FALSE){
+			echo $sql->error;
+		}
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;

@@ -3,7 +3,7 @@
 	//tests are currently in wrong order, foreign keys won't work
 	include '../PHP/Include.php';
 	
-	Purchase(123456789, 1111222233334444, 123456789123, 2);
+	//Purchase(123456789, 1111222233334444, 123456789123, 2);
 	
 	//$r = AddItems(123456789123, 2);
 	//echo $r;
@@ -26,8 +26,8 @@
 	}*/
 	
 	//test customer functions
-	/*$r = CustomerInsert(123456789, "password", "customer name", "1234 Apple St BC", 7787771234);
-	echo $r;
+	$r = CustomerInsert(123456789, "password", "customer name", "1234 Apple St BC", 7787771234);
+	/*echo $r;
 	$r = CustomerDisplay();
 	for($x = 0; $x < 1; $x++){
 		for($y = 0; $y < 5; $y++){

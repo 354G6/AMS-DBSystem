@@ -2,14 +2,14 @@
 	include_once 'Connect.php';
 	include_once 'ReturnItem.php';
 
+	// returns an auto_increment id from insert
 	function ReturnInsert($date, $receiptId){
-		$r = 2;
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		if($sql->query("INSERT INTO `Return` VALUES (NULL, '$date', '$receiptId')") === FALSE){
-			return 2;
+			echo $sql->error;
 		}else{
 			$r = $sql->insert_id;
 		}
@@ -20,21 +20,24 @@
 	function ReturnDelete($retid){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		if($sql->query("DELETE FROM `Return` WHERE retid = '$retid'") === FALSE){
-			return 2;
+			echo $sql->error;
 		}
 		Close($sql);
-		return 0;
 	}
 	
+	// returns a 2d array containing data from the Return table
 	function ReturnDisplay(){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		$result = $sql->query("SELECT * FROM `Return`");
+		if($result === FALSE){
+			echo $sql->error;
+		}
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;
@@ -45,7 +48,7 @@
 	function ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ, $CurrDate){
 		$sql=Connect();
 		if($sql->connect_error){
-			return 1;
+			echo $sql->connect_error;
 		}
            // Which comparison sign should be used: <> , !==
 		$validRecID = $sql->query(" SELECT receiptId
@@ -71,11 +74,7 @@
 		//should return last auto_incremented id and pass to ReturnItemInsert as associated retid
 		$lastId = ReturnInsert($CurrDate, $ReturnRecID); //
 		ReturnItemInsert($lastId, $ReturnUPC, $ReturnQ);
-		
-		//
-		
-		
+
 		Close($sql);
-		return 0; //Item return completed.
 	}
 ?>

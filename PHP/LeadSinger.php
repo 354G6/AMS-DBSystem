@@ -4,33 +4,35 @@
 	function LeadSingerInsert($upc, $name){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		if($sql->query("INSERT INTO LeadSinger VALUES ('$upc', '$name')") === FALSE){
-			return 2;
+			echo $sql->error;
 		}
 		Close($sql);
-		return 0;
 	}
 	
 	function LeadSingerDelete($upc, $name){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		if($sql->query("DELETE FROM LeadSinger WHERE upc = '$upc' AND name = '$name'") === FALSE){
-			return 2;
+			echo $sql->error;
 		}
 		Close($sql);
-		return 0;
 	}
 	
+	// returns a 2d array containing data from the LeadSinger table
 	function LeadSingerDisplay(){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			return 1;
+			echo $sql->connect_error;
 		}
 		$result = $sql->query("SELECT * FROM LeadSinger");
+		if($result === FALSE){
+			echo $sql->error;
+		}
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
 			$table[] = $row;
