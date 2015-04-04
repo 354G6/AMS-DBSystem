@@ -1,39 +1,33 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validated=true;
-    $cid = $name = $password = $cpw = $address = $phone = "";
+    $upc = $quantity = $price = "";
     
     //filter input data
-    $cid = filter($_POST["cid"]);
-    $name = filter($_POST["name"]);
-    $password = $_POST["password"];
-    $cpw = $_POST["cpw"];
-    $address = filter($_POST["address"]);
-    $phone = filter($_POST["phone"]);
+    $upc = filter($_POST["itemUPC"]);
+    $quantity = filter($_POST["addQuant"]);
+    $price = filter($_POST["addPrice"]);
   
     //validate
-    if ($cid==""||$password==""||$cpw==""||$password!=$cpw) {
+    if ($upc==""||$quantity=="") {
         $validated=false;
     }
     
     if ($validated) {
         //clear form data
-        $_POST["cid"]="";
-        $_POST["name"]="";
-        $_POST["address"]="";
-        $_POST["phone"]="";
+        $_POST["itemUPC"]="";
+        $_POST["addQuant"]="";
+        $_POST["addPrice"]="";
         
-        //include dirname(__FILE__) . "core/Customer.php";
+        //include dirname(__FILE__) . "core/Item.php";
         $returnMessage="";
-        $result = 0; //= CustomerRegister($cid, $password, $name, $address, $phone)
+        $result = 0; //= addItems($upc, $quantity, $price);
         if (result == 0) {
-            $returnMessage='Registered successfully!<br>Please <a href="?op=login">>>Click Here to Log In<<</a>';
-            //echo '<script>alert("Registered successfully!\nPlease Log In using your ID and Password.");</script>';
-            //echo '<script>window.location = "?op=login"</script>';
+            $returnMessage='Added successfully!';
         } else {
             $errorMessage = array( '',
                                 'Unable to connect to the database.',
-                                'Failed executing query.' //how to get message like "Login ID already exists"?
+                                'Failed executing query.'
                             );
             $returnMessage = 'Error:'.$errorMessage[$result];
         }
@@ -51,9 +45,16 @@ function filter($data) {
 
 <div class="entryBox">
 <h3>Add Item</h3>
-<form action="?procAddItem" method="POST">
-    <div class="textEntry">Item UPC: <input type="number" name="itemUPC" id="itemUPC" required/></div>
-    <div class="textEntry">Quantity: <input type="number" name="addQuant" id="addQuant" required/></div>
-    <div class="textEntry">Price: <input type="text" name="addPrice" id="addPrice" required/></div>
+<div class="feedbackMessage"><?echo $returnMessage?></div>
+<div class="instruction">(* required)</div>
+<form action="?op=<?echo $_GET['op']?>" method="POST">
+    <div class="textEntry">Item UPC*: <input type="number" name="itemUPC" placeholder="e.g. 1 23456 78999 9" id="itemUPC" value="<?echo $_POST["itemUPC"]?>" required/></div>
+    <div class="textEntry">Add Quantity*: <input type="number" name="addQuant" placeholder="e.g. 120" id="addQuant" value="<?echo $_POST["addQuant"]?>" required/></div>
+    <div class="textEntry">New Price: <input type="number" name="addPrice" placeholder="e.g. 25" id="addPrice" value="<?echo $_POST["addPrice"]?>"/></div>
+
+    <div class="formAction">
+        <input type="submit" value="Add Item"/>
+        <a href="?op=home">Cancel</a>
+    </div>
 </form>
 </div>

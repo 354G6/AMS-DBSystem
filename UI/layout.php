@@ -33,25 +33,24 @@ echo "[DEBUG] YOUR ROLE: (".$_SESSION["role"]."); OPERATION: (".$_GET["op"].")";
 //customer ($role=cust) 
 if ($_SESSION["role"]=="customer") {
 	$operations = array(
-					"itemPurchase"=>"Purchase Item",
-					"feedback"=>"Give Feedback"
+					"purchase"=>"Purchase Item"
 					);
 }
 
 //manager ($role=mana)
 elseif ($_SESSION["role"]=="manager") {
 	$operations = array(
-				    "addItem"=>"Add Items to Store",
-				    "procDelivery"=>"Process Delivery of Order",
-				    "dailySales"=>"Generate Daily Sales Report",
-				    "topSelling"=>"Get Top Selling Items"
+				    "additem"=>"Add Items to Store",
+				    "procdelivery"=>"Process Delivery of Order",
+				    "dailysales"=>"Generate Daily Sales Report",
+				    "topselling"=>"Get Top Selling Items"
 					);
 }
 
 //clerk ($role=clerk)
 elseif ($_SESSION["role"]=="clerk") {
 	$operations = array(
-					"processReturn"=>"Process Return"
+					"refund"=>"Process Return"
 					);
 }
 elseif ($_SESSION["role"]=="guest") {}
