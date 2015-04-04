@@ -45,7 +45,7 @@
 		Close($sql);
 		return $table;
 	}
-	function ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ, $CurrDate){
+	function ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ){
 		$sql=Connect();
 		if($sql->connect_error){
 			echo $sql->connect_error;
@@ -72,7 +72,8 @@
 		if($validReQC<>$ReturnQ){ return 6666; } //should pop out "The quantity is not valid" in webpage
 		
 		//should return last auto_incremented id and pass to ReturnItemInsert as associated retid
-		$lastId = ReturnInsert($CurrDate, $ReturnRecID); //
+		$today = date("Y-m-d H:i:s");
+		$lastId = ReturnInsert($today, $ReturnRecID); //
 		ReturnItemInsert($lastId, $ReturnUPC, $ReturnQ);
 
 		Close($sql);
