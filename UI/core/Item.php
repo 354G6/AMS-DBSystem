@@ -41,7 +41,7 @@
 		return $table;
 	}
 	
-	function AddItems($upc, $quantity){
+	function AddItems($upc, $price, $quantity){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			echo $sql->connect_error;
@@ -54,7 +54,11 @@
 			//only one element should ever be returned to $row
 			$row = $result->fetch_row();
 			$result->close();
-			$sql->query("UPDATE Item SET stock = '$quantity' + '$row[0]' WHERE upc = '$upc'");
+			if($price === NULL){
+				$sql->query("UPDATE Item SET stock = '$quantity' + '$row[0]' WHERE upc = '$upc'");
+			}else{
+				$sql->query("UPDATE Item SET stock = '$quantity' + '$row[0]', price = '$price' WHERE upc = '$upc'");
+			}
 			if($result === FALSE){
 				echo $sql->error;
 			}
