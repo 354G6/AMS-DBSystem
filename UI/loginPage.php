@@ -22,13 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include "core/Customer.php";
     
         $result = CustomerLogin($loginID, $password);
-        if ($result == 0) {
+        if ($result === 0) {
+		echo "customer";
             $_SESSION['role']="customer";
 			echo "<script>window.location = '?op=home'</script>";
-        }else if($result == 1){
+        }else if($result === 1){
+		echo "clerk";
 			$_SESSION['role']="clerk";
 			echo "<script>window.location = '?op=home'</script>";
-		}else if($result == 2){
+		}else if($result === 2){
+		echo "manager";
 			$_SESSION['role']="manager";
 			echo "<script>window.location = '?op=home'</script>";
         }else {
