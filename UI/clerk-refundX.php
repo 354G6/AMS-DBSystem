@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$ReturnQ = $_POST["ReturnQ"];
 	
 	//validate
-	if ($ReturnRecID==""||$ReturnUPC=="") {
+	if ($ReturnRecID==""||$ReturnUPC==""||$ReturnQ="") {
 		$validated=false;
 	}
 	
@@ -18,8 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_POST["ReturnRecID"]="";
 		$_POST["ReturnUPC"]="";
 		$_POST["ReturnQ"]="";
-	} else {
 		
+		include "core/Return.php";
+		$returnMessage="";
+		$result = ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ);
+		if (result === 0){
+			$returnMessage="Items you purchased have been returned successfully! You will get your refund back!";
+		} else {
+			$errorMessage=array('',
+					'Unable to connect to the database.',
+                                	'Failed executing query.');
+                        $returnMessage='Error: '.$result;
+		}
 	}
 }
 
