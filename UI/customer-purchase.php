@@ -18,13 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //$_POST["title"]="";
         //$_POST["leadingSinger"]="";
         
-        //include dirname(__FILE__) . "core/itemPurchase.php";
+        include "core/itemPurchase.php";
         $returnMessage="";
         
-        $row1 = array('upc'=>'123456789999', 'title'=>'Test DVD', 'price'=>'100', 'stock'=>'23'); //for testing only
-        $row2 = array('upc'=>'123456780000', 'title'=>'Test CD', 'price'=>'45', 'stock'=>'1'); //for testing only
+        //$row1 = array('upc'=>'123456789999', 'title'=>'Test DVD', 'price'=>'100', 'stock'=>'23'); //for testing only
+        //$row2 = array('upc'=>'123456780000', 'title'=>'Test CD', 'price'=>'45', 'stock'=>'1'); //for testing only
         
-        $result = array($row1,$row2); //= itemSearch($category, $title, $leadingSinger);
+        $result = itemSearch($category, $title, $leadingSinger);
         if (is_array($result)) {
             if (count($result)>0) {
                 $returnMessage= count($result)+' items found.';
