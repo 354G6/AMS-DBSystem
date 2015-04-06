@@ -43,10 +43,12 @@ function filter($data) {
 
 <div class="entryBox">
   <h2>Refund</h2>
+  <div class="feedbackMessage"><?echo $returnMessage?></div>
+  <div class="instruction">* required</div>
   <form action="?op=<?echo $_GET['op'];?>" method="POST">
-  <div class="textEntry">Receipt ID: <input type="number" name="ReturnRecID" placeholder="e.g. 35803" value="<?echo $_POST["ReturnRecID"]?>" required /> <span class="error"></span></div>  
-  <div class="textEntry">UPC: <input type="number" name="ReturnUPC" placeholder="e.g. 3580380428342" value="<?echo $_POST["ReturnUPC"]?>" required /> <span class="error"></span></div>
-  <div class="textEntry">Amount: <input type="number" name="ReturnQ" placeholder="e.g. 3" value="<?echo $_POST["ReturnQ"]?>" required /> <span class="error"></span></div>
+  <div class="textEntry">Receipt ID*: <input type="number" name="ReturnRecID" placeholder="e.g. 35803" value="<?echo $_POST["ReturnRecID"]?>" required /> <span class="error"></span></div>  
+  <div class="textEntry">UPC*: <input type="number" name="ReturnUPC" placeholder="e.g. 3580380428342" value="<?echo $_POST["ReturnUPC"]?>" required /> <span class="error"></span></div>
+  <div class="textEntry">Amount*: <input type="number" name="ReturnQ" placeholder="e.g. 3" value="<?echo $_POST["ReturnQ"]?>" required /> <span class="error"></span></div>
   <div class="formAction"><input type="submit" value="Refund"/></div>
   </form>
 </div>
