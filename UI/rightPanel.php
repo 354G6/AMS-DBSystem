@@ -27,7 +27,7 @@ else {
         case "additem":
             include('manager-defaultAdd.php');
             break;
-        case "procdeliver": //to be done
+        case "procdelivery": //to be done
             include('manager-deliver.php');
             break;
         case "dailysales": //to be done

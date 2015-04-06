@@ -12,7 +12,8 @@
 			$row = $result->fetch_row();
 			$result->close();
 			$sql->query("UPDATE Order SET deliveredDate = '$DeliveryDate' + '$row[6]' WHERE receiptid = '$receiptid'");
-		}else{
+		    return 0;
+      }else{
 			//receiptid is not in Order table
 			return 2;
 		}

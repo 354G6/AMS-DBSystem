@@ -33,7 +33,8 @@
 		return $table;
 	}
 	
-	function itemPurchase($cid, $category, $title, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
+    //
+	function itemPurchase($shoppingCart, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
 		define("MAX_DAILY_DELIVERY", 10);
 		$itemRecords = itemSearch($category, $title, $leadingSinger);
 		if ($itemRecords===1) {
