@@ -39,7 +39,7 @@ function filter($data) {
 	return $data;
 }
 ?>
-<div id="TopSelling">
+<div id="entryBox">
   <p>Top Selling Items</p>
   <form>
   <div class="textEntry">Date: <input type="text" id="Datepicker1" value="<?echo $_POST["date"]?>" required /></div>
