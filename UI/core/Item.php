@@ -42,13 +42,14 @@
 	}
 	
 	function AddItems($upc, $price, $quantity){
+		$r = 0;
 		$sql = Connect();
 		if ($sql->connect_error) {
-			echo $sql->connect_error;
+			$r = $sql->connect_error;
 		}
 		$result = $sql->query("SELECT stock FROM Item WHERE upc = '$upc'");
 		if($result === FALSE){
-			echo $sql->error;
+			$r = $sql->error;
 		}
 		if($result->num_rows !== 0){
 			//only one element should ever be returned to $row
@@ -60,12 +61,12 @@
 				$sql->query("UPDATE Item SET stock = '$quantity' + '$row[0]', price = '$price' WHERE upc = '$upc'");
 			}
 			if($result === FALSE){
-				echo $sql->error;
+				$r = $sql->error;
 			}
 		}else{
-			//item upc is not in Item table
-			//check before function is called?
+			$r = "Item does not exist.";
 		}
 		Close($sql);
+		return $r;
 	}
 ?>

@@ -43,11 +43,23 @@
 	
 	//calls CustomerInsert() but hashes password with salt first
 	function CustomerRegister($cid, $password, $name, $address, $phone){
-		$cost = 10;
-		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-		$salt = sprintf("$2a$%02d$", $cost) . $salt;
-		$hash = crypt($password, $salt);
-		CustomerInsert($cid, $hash, $name, $address, $phone);
+		$r = 0;
+		$sql = Connect();
+		if ($sql->connect_error) {
+			echo $sql->connect_error;
+		}
+		$result = $sql->query("SELECT * FROM Customer WHERE cid = '$cid'");
+		if($result->num_rows === 0){
+			$cost = 10;
+			$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+			$salt = sprintf("$2a$%02d$", $cost) . $salt;
+			$hash = crypt($password, $salt);
+			CustomerInsert($cid, $hash, $name, $address, $phone);
+		}else{
+			$r = "Login ID already exists. Please choose another.";
+		}
+		Close($sql);
+		return $r;
 	}
 	
 	

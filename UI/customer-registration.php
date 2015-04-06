@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         include "core/Customer.php";
         $returnMessage="";
-        //$result = 0; 
-		CustomerRegister($cid, $password, $name, $address, $phone);
-        if (result == 0) {
+		
+        $result = CustomerRegister($cid, $password, $name, $address, $phone);
+        if ($result === 0) {
             $returnMessage='Registered successfully!<br>Please <a href="?op=login">>>Click Here to Log In<<</a>';
             //echo '<script>alert("Registered successfully!\nPlease Log In using your ID and Password.");</script>';
             //echo '<script>window.location = "?op=login"</script>';
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 'Unable to connect to the database.',
                                 'Failed executing query.' //how to get message like "Login ID already exists"?
                             );
-            $returnMessage = 'Error:'.$errorMessage[$result];
+            $returnMessage = 'Error: '.$result;
         }
     }
 }

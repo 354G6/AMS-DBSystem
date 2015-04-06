@@ -19,17 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST["addQuant"]="";
         $_POST["addPrice"]="";
         
-        //include dirname(__FILE__) . "core/Item.php";
+        include "core/Item.php";
         $returnMessage="";
-        $result = 0; //= addItems($upc, $quantity, $price);
-        if (result == 0) {
+        $result = AddItems($upc, $quantity, $price);
+        if ($result === 0) {
             $returnMessage='Added successfully!';
         } else {
             $errorMessage = array( '',
                                 'Unable to connect to the database.',
                                 'Failed executing query.'
                             );
-            $returnMessage = 'Error:'.$errorMessage[$result];
+            $returnMessage = 'Error: '.$result;
         }
     }
 }

@@ -35,11 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION['role']="manager";
 			echo "<script>window.location = '?op=home'</script>";
         }else {
-            $errorMessage = array( '',
-                                'Unable to connect to the database.',
-                                'Failed executing query.'
-                            );
-            echo 'Error:'.$errorMessage[$result];
+            echo 'Error: '.$result;
         }
     }
 }
