@@ -41,7 +41,7 @@ function filter($data) {
 }
 ?>
 
-<div id="Refund">
+<div id="entryBox">
   <h2>Refund</h2>
   <form action="?op=<?echo $_GET['op'];?>" method="POST">
   <div class="textEntry">Receipt ID: <input type="number" name="ReturnRecID" placeholder="e.g. 35803" value="<?echo $_POST["ReturnRecID"]?>" required /> <span class="error"></span></div>  
