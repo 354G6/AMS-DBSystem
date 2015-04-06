@@ -17,11 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     		$_POST["date"]="";
     		$_POST["topNum"]="";
     		
-    		include "core/topSelling.php";
+    		//include "core/topSelling.php";
     		$returnMessage="";
-    		$result = topSelling($date, $topNum);
+    		$result = 0;//topSelling($date, $topNum);
     		if ($result === 0){
-    			$returnMessage="The top selling on ".$date." is ".$topNum.". ";
+    			$returnMessage="Successful";
     		} else {
     			$errorMessage = array( '',
                                 'Unable to connect to the database.',
@@ -39,15 +39,13 @@ function filter($data) {
 	return $data;
 }
 ?>
-<div id="entryBox">
-  <p>Top Selling Items</p>
-  <form>
-  <div class="textEntry">Date: <input type="text" id="Datepicker1" value="<?echo $_POST["date"]?>" required /></div>
-  <div class="textEntry">Top Items: <input type="text" name="topNum" value="<?echo $_POST["topNum"]?> required"/></div>
-  <div class="formAction"><input type="submit" name="Next"/></div>
-   <?echo
-   <script type="text/javascript"> $(function() {
-	$( "#Datepicker1" ).datepicker(); });
-   </script>
-   ?>
+<div class="entryBox">
+    <h2>Get Top Selling Items</h2>
+    <div class="feedbackMessage"><?echo $returnMessage?></div>
+    <div class="instruction">* required</div>
+    <form action="?op=<?echo $_GET['op'];?>" method="POST">
+        <div class="textEntry">Date: <input type="date" name="date" value="<?echo $_POST["date"]?>" required /></div>
+        <div class="textEntry"># Items to display: <input type="number" name="topNum" placeholder="e.g. 20" value="<?echo $_POST["topNum"]?>" required/></div>
+        <div class="formAction"><input type="submit" name="Submit"/></div>
+    </form>
 </div>
