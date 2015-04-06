@@ -42,13 +42,14 @@ function filter($data) {
 }
 ?>
 
+<div class="entryBox">
     <h2>Process Return</h2>
     <div class="feedbackMessage"><?echo $returnMessage?></div>
     <div class="instruction">* required</div>
     <form action="?op=<?echo $_GET['op'];?>" method="POST">
         <div class="textEntry">Receipt ID*: <input type="number" name="ReturnRecID" placeholder="e.g. 35803" value="<?echo $_POST["ReturnRecID"]?>" required /> <span class="error"></span></div>  
+        <div class="textEntry">Item UPC*: <input type="number" name="ReturnUPC" placeholder="e.g. 3 58030 42834 2" value="<?echo $_POST["ReturnUPC"]?>" required /> <span class="error"></span></div>
         <div class="textEntry">Return Quantity*: <input type="number" name="ReturnQ" placeholder="e.g. 3" value="<?echo $_POST["ReturnQ"]?>" required /> <span class="error"></span></div>
         <div class="formAction"><input type="submit" value="Submit"/></div>
     </form>
 </div>
-
