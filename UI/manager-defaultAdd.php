@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         include "core/Item.php";
         $returnMessage="";
-        $result = AddItems($upc, $quantity, $price);
+        $result = AddItems($upc, $price, $quantity);
         if ($result === 0) {
             $returnMessage='Added successfully!';
         } else {
@@ -50,7 +50,7 @@ function filter($data) {
 <form action="?op=<?echo $_GET['op']?>" method="POST" autocomplete="off">
     <div class="textEntry">Item UPC*: <input type="number" name="itemUPC" placeholder="e.g. 1 23456 78999 9" id="itemUPC" value="<?echo $_POST["itemUPC"]?>" required/></div>
     <div class="textEntry">Add Quantity*: <input type="number" name="addQuant" placeholder="e.g. 120" id="addQuant" value="<?echo $_POST["addQuant"]?>" required/></div>
-    <div class="textEntry">New Price: <input type="number" name="addPrice" placeholder="e.g. 25" id="addPrice" value="<?echo $_POST["addPrice"]?>"/></div>
+    <div class="textEntry">New Price: <input type="number" step="0.01" name="addPrice" placeholder="e.g. 25" id="addPrice" value="<?echo $_POST["addPrice"]?>"/></div>
 
     <div class="formAction">
         <input type="submit" value="Add Item"/>
