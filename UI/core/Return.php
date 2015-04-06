@@ -58,7 +58,7 @@
 
 		$validDate = $sql->query(" SELECT receiptId
 					   FROM Order
-				           WHERE receiptId='$ReturnRecID' AND $CurrDate<expiryDate");
+				           WHERE receiptId='$ReturnRecID' AND $CurrDate<Date");
 		if($validRecID<>$ReturnRecID){ return 8888; } //should pop out "Purcahsed iems is beyond retrunable date" in webpage
 
 		$validUPC = $sql->query("SELECT upc
