@@ -9,18 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$ReturnQ = $_POST["ReturnQ"];
 	
 	//validate
-	if ($ReturnRecID==""||$ReturnUPC==""||$ReturnQ="") {
+	if ($ReturnRecID==""||$ReturnUPC==""||$ReturnQ=="") {
 		$validated=false;
 	}
 	
 	if ($validated) {
-
-		
 		include "core/Return.php";
 		$returnMessage="";
-		$result = 0;//ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ);
-		if (result === 0){
-			$returnMessage="Items returned! Refund amount: $100.";
+		$result = ProcessReturn($ReturnRecID, $ReturnUPC, $ReturnQ);
+		if ($result === 0){
+			$returnMessage="Success!";
             //clear form data
             $_POST["ReturnRecID"]="";
             $_POST["ReturnUPC"]="";

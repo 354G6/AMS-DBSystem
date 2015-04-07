@@ -2,14 +2,16 @@
 	include_once 'Connect.php';
 
 	function ReturnItemInsert($retid, $upc, $quantity){
+		$result = 0;
 		$sql = Connect();
 		if ($sql->connect_error) {
-			echo $sql->connect_error;
+			$result = $sql->connect_error;
 		}
 		if($sql->query("INSERT INTO ReturnItem VALUES ('$retid', '$upc', '$quantity')") === FALSE){
-			echo $sql->error;
+			$result = $sql->error;
 		}
 		Close($sql);
+		return $result;
 	}
 	
 	function ReturnItemDelete($retid, $upc){
