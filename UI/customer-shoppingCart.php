@@ -1,4 +1,5 @@
 <?php
+$returnMessage = 'No item in your shopping cart. <br><a href="?op=purchase">>>Search for an item here<<</a>';
 include "core/itemPurchase.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validated=true;
@@ -24,6 +25,7 @@ function filter($data){
 	$data = htmlspecialchars($data);
 	return $data;
 }
+
 ?>
 <div class="entryBox">
 <h2>Shopping Cart</h2>
@@ -33,8 +35,10 @@ function filter($data){
 <?
 $pricelist = array();
 if (isset($_SESSION['itemlist'])) {
+
     $result = shoppingCartFetch(array_keys($_SESSION['itemlist']));
     if (is_array($result)) {
+        $returnMessage = "";
         echo
         '
         <h3>Items in your shopping cart:</h3>
@@ -93,8 +97,6 @@ if (isset($_SESSION['itemlist'])) {
         </form>
         ';
     }
-} else {
-    $returnmessage = 'No item in your shopping cart. <a href="?op=purchase">>>Search for an item here<<</a>';
 }
 ?>
 
