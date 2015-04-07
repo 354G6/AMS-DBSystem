@@ -62,7 +62,8 @@ function filter($data){
         <!-- <a href="?op=home">Cancel</a> -->
     </div>
 
-</form><br/>
+</form>
+</div>
 <?php
 if (is_array($result)) {
     echo
@@ -99,4 +100,3 @@ if (is_array($result)) {
     </form>';
 }
 ?>
-</div>

@@ -39,7 +39,6 @@ function filter($data){
             <option>3</option>
             <option>4</option>
         </select>
-        <!-- <a href="?op=login">Cancel</a> -->
     </div>
 </div>
 </div>
