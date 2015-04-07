@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST["receiptId"]="";
         $_POST["deliveryDate"]="";
         
-        //include "core/Delivery.php";
+        include "core/Delivery.php";
         $returnMessage="";
 		
-        $result = 0;//ProcessDelivery($receiptId, $deliveryDate);
+        $result = ProcessDelivery($receiptId, $deliveryDate);
         if ($result === 0) {
             $returnMessage='Successful!';
         } else {
