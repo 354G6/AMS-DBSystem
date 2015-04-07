@@ -68,7 +68,7 @@ function filter($data) {
             }
 			echo '<tr class="datarow">';
 			foreach($row as $key=>$value) {
-				echo '<td class="datacell">'.$row.'</td>';
+				echo '<td class="datacell">'.$value.'</td>';
 			}
 			echo '</tr>';
 		}

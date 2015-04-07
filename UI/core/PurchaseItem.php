@@ -38,7 +38,7 @@
 			echo $sql->error;
 		}
 		$table = array();
-		while($row = mysqli_fetch_array($result)){
+		while($row = mysqli_fetch_assoc($result)){
 			$table[] = $row;
 		}
 		Close($sql);
@@ -73,7 +73,7 @@
 			return $sql->error;
 		}
 		$table = array();
-		while($row = mysqli_fetch_array($result)){
+		while($row = mysqli_fetch_assoc($result)){
 			$table[] = $row;
 		}
 		Close($sql);
