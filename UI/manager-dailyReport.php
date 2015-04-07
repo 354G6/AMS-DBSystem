@@ -49,36 +49,37 @@ function filter($data) {
         <div class="textEntry">Date*: <input type="date" name="date" value="<?echo $_POST['date']?>"/></div>
         <div class="formAction"><input type="submit" value="Submit"/></div>
     </form>
-	
-	<?php
-	if (is_array($result)) {
-		echo
-		'<div class="instruction">Daily Report:</div>
-		<form action="?op='.$_GET['op'].'" method="POST">
-		<table>';
-		$labelRow=true;
-		foreach($result as $row){
-            if ($labelRow) {
-                echo '<tr class="labelrow">';
-                foreach($row as $key=>$value) {
-                    echo '<th class="labelcell">'.$key.'</th>';
-                }
-                $labelRow=false;
-                echo '</tr>';
-            }
-			echo '<tr class="datarow">';
-			foreach($row as $key=>$value) {
-				echo '<td class="datacell">'.$value.'</td>';
-			}
-			echo '</tr>';
-		}
-		
-		echo '</table>';
-		
-		include_once "core/PurchaseItem.php";
-		$total = DailyTotal($result);
-		echo 'Total: '.$total;
-	}
-	?>
-	
 </div>
+
+<?php
+if (is_array($result)) {
+	echo
+	'<div class="instruction">Daily Report:</div>
+	<form action="?op='.$_GET['op'].'" method="POST">
+	<table>';
+	$labelRow=true;
+	foreach($result as $row){
+        if ($labelRow) {
+            echo '<tr class="labelrow">';
+            foreach($row as $key=>$value) {
+                echo '<th class="labelcell">'.$key.'</th>';
+            }
+            $labelRow=false;
+            echo '</tr>';
+        }
+		echo '<tr class="datarow">';
+		foreach($row as $key=>$value) {
+			echo '<td class="datacell">'.$value.'</td>';
+		}
+		echo '</tr>';
+	}
+		
+	echo '</table>';
+		
+	include_once "core/PurchaseItem.php";
+	$total = DailyTotal($result);
+	echo 'Total: '.$total;
+}
+?>
+	
+
