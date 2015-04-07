@@ -62,11 +62,12 @@ function filter($data){
         <!-- <a href="?op=home">Cancel</a> -->
     </div>
 
-</form><br/>
+</form>
+</div>
 <?php
 if (is_array($result)) {
     echo
-    '<div class="instruction">Item(s) that match your criteria:</div>
+    '<div class="instruction">Item(s) that match your criteria: (Choose one to add to shopping cart)</div>
     <form action="?op='.$_GET['op'].'" method="POST">
     <table>';
 
@@ -99,4 +100,3 @@ if (is_array($result)) {
     </form>';
 }
 ?>
-</div>

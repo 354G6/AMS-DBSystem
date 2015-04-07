@@ -58,7 +58,7 @@ function filter($data) {
     <div class="textEntry">Login ID*: <input type="text" name="cid" placeholder="e.g. jsmith" value="<?echo $_POST["cid"]?>" required /> <span class="error"></span></div>
     <div class="textEntry">Full Name: <input type="text" name="name"  placeholder="e.g. John Smith" value="<?echo $_POST["name"]?>"/> <span class="error"></span></div>
     <div class="textEntry">Password*: <input type="password" name="password"  placeholder="" required /> <span class="error"></span></div>
-    <div class="textEntry">Comfirm Password*: <input type="password" name="cpw"  placeholder="" required /> <span class="error"></span></div>
+    <div class="textEntry">Confirm Password*: <input type="password" name="cpw"  placeholder="" required /> <span class="error"></span></div>
     <div class="textEntry">Address: <input type="text" name="address"  placeholder="e.g. 888 Mystreet, Mycity" value="<?echo $_POST["address"]?>"/><span class="error"> </span></div>
     <div class="textEntry">Phone: <input type="tel" name="phone" pattern='\d{3}[\-]\d{3}[\-]\d{4}' placeholder="e.g. 604-123-4567" value="<?echo $_POST["phone"]?>"/> <span class="error"> </span></div>
 

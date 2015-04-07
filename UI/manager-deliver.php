@@ -44,9 +44,9 @@ function filter($data) {
 <div class="entryBox">
 <h2>Process Delivery</h2>
 <div class="feedbackMessage"><?echo $returnMessage?></div>
-<div class="instruction">* required</div>
+<div class="instruction">(* = required)</div>
 <form action="?op=<?echo $_GET['op'];?>" method="POST" autocomplete="off">
-  <div class="textEntry">Receipt ID*: <input type="text" name="receiptId" value="<?echo $_POST["receiptId"]?>" required/></div>
+  <div class="textEntry">Receipt ID*: <input type="number" name="receiptId" value="<?echo $_POST["receiptId"]?>" required/></div>
   <div class="textEntry">Delivery Date*:  <input type="date" name="deliveryDate" value="<?echo $_POST["deliveryDate"]?>" required/></div>
   <div class="formAction"><input type="submit" name="Submit"/></div>
 </form>
