@@ -17,15 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     		$_POST["date"]="";
     		$_POST["topNum"]="";
     		
-    		//include "core/topSelling.php";
+    		include "core/topSelling.php";
     		$returnMessage="";
             
             //UI testdata
-            $row1 = array('upc'=>'123456789999', 'title'=>'Test DVD', 'company'=>'abc', 'stock'=>'100', 'Quantities Sold'=>'323'); //for testing only
-            $row2 = array('upc'=>'123456780000', 'title'=>'Test CD', 'company'=>'ZZz', 'stock'=>'45', 'Quantities Sold'=>'122'); //for testing only
+            //$row1 = array('upc'=>'123456789999', 'title'=>'Test DVD', 'company'=>'abc', 'stock'=>'100', 'Quantities Sold'=>'323'); //for testing only
+            //$row2 = array('upc'=>'123456780000', 'title'=>'Test CD', 'company'=>'ZZz', 'stock'=>'45', 'Quantities Sold'=>'122'); //for testing only
         
             
-    		$result = array($row1,$row2);//topSelling($date, $topNum);
+    		$result = topSelling($date, $topNum);//array($row1,$row2);
     		if (is_array($result)){
     			$returnMessage="Successful";
     		} else {
