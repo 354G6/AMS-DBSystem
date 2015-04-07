@@ -82,9 +82,9 @@ if (is_array($result)) {
             echo '</tr>';
         }
         if ($row['stock']>0) {
-            echo '<tr class="datarow"><td><input type="radio" name="item" id="'.$i.'" /></td>';
+            echo '<tr><td><input type="radio" name="item" id="'.$i.'" /></td>';
             foreach($row as $key=>$value) {
-                echo '<td class="datacell"><label for="'.$i.'">'.$value.'</label></td>';
+                echo '<td><label for="'.$i.'">'.$value.'</label></td>';
             }
             echo '</tr>';
         }

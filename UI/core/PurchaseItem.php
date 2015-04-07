@@ -58,7 +58,7 @@
 	function DailyReport($date){
 		$sql = Connect();
 		if ($sql->connect_error) {
-			echo $sql->connect_error;
+			return $sql->connect_error;
 		}
 		//$date format must be yyyy-mm-dd
 		$result = $sql->query("SELECT Item.upc, category, ROUND((price*SUM(quantity)), 2) AS price, SUM(quantity)
@@ -70,7 +70,7 @@
 							   WHERE '$date' = date(`Order`.`date`)
 							   GROUP BY Item.upc");
 		if($result === FALSE){
-			echo $sql->error;
+			return $sql->error;
 		}
 		$table = array();
 		while($row = mysqli_fetch_array($result)){
