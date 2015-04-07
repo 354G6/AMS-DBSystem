@@ -56,11 +56,19 @@ function filter($data) {
 		'<div class="instruction">Daily Report:</div>
 		<form action="?op='.$_GET['op'].'" method="POST">
 		<table>';
-		
+		$labelRow=true;
 		foreach($result as $row){
+            if ($labelRow) {
+                echo '<tr class="labelrow">';
+                foreach($row as $key=>$value) {
+                    echo '<th class="labelcell">'.$key.'</th>';
+                }
+                $labelRow=false;
+                echo '</tr>';
+            }
 			echo '<tr class="datarow">';
-			for($i = 0; $i < 4; $i++) {
-				echo '<td class="datacell">'.$row[$i].'</td>';
+			foreach($row as $key=>$value) {
+				echo '<td class="datacell">'.$row.'</td>';
 			}
 			echo '</tr>';
 		}

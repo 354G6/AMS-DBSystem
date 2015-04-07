@@ -63,7 +63,6 @@ if (is_array($result)) {
     <table>';
 
     $labelRow=true;
-    $i=0;
     foreach($result as $row) {
         if ($labelRow) {
             echo '<tr class="labelrow">';
@@ -74,7 +73,7 @@ if (is_array($result)) {
             echo '</tr>';
         }
         //if ($row['stock']>0) {
-            echo '<tr>';
+            echo '<tr class="datarow">';
             foreach($row as $key=>$value) {
                 echo '<td>'.$value.'</td>';
             }
