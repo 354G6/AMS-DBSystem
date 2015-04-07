@@ -34,7 +34,7 @@ echo "[DEBUG] YOUR ROLE: (".$_SESSION["role"]."); OPERATION: (".$_GET["op"].")";
 if ($_SESSION["role"]=="customer") {
 	$operations = array(
 					"purchase"=>"Buy Items",
-                    "cart"=>"View Shopping Cart"
+                    "cart"=>"View Shopping Cart "//."(".count($_SESSION['itemlist']).")"
 					);
 }
 

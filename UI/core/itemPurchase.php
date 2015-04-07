@@ -24,8 +24,7 @@
 			$criteria="";
 		}
 		
-        echo '<script>alert("'.$criteria.'");</script>';
-		$result = $sql->query("SELECT I.upc, I.title, I.price, I.stock FROM Item I, LeadSinger L WHERE I.upc = L.upc ".$criteria);
+        $result = $sql->query("SELECT I.upc, I.title, I.price, I.stock FROM Item I, LeadSinger L WHERE I.upc = L.upc ".$criteria);
 		$table = array();
 		while($row = mysqli_fetch_assoc($result)) {
 			$table[] = $row;

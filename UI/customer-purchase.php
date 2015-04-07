@@ -1,43 +1,53 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$validated=true;
-	$category = $title = $leadingSinger = "";
+    if ($_POST['search']) {
+	    $validated=true;
+	    $category = $title = $leadingSinger = "";
 	
-	//filter input data
-	$category = filter($_POST["category"]);
-	$title = filter($_POST["title"]);
-	$leadingSinger = filter($_POST["leadingSinger"]);
+	    //filter input data
+	    $category = filter($_POST["category"]);
+	    $title = filter($_POST["title"]);
+	    $leadingSinger = filter($_POST["leadingSinger"]);
 	
-	//validate
-    //if () {
-    //    $validated=false;
-    //}
-	if ($validated) {
-        //clear form data
-        //$_POST["category"]="";
-        //$_POST["title"]="";
-        //$_POST["leadingSinger"]="";
+	    //validate
+        //if () {
+        //    $validated=false;
+        //}
+	    if ($validated) {
+            //clear form data
+            //$_POST["category"]="";
+            //$_POST["title"]="";
+            //$_POST["leadingSinger"]="";
         
-        include "core/itemPurchase.php";
-        $returnMessage="";
+            include "core/itemPurchase.php";
+            $returnMessage="";
         
-        //$row1 = array('upc'=>'123456789999', 'title'=>'Test DVD', 'price'=>'100', 'stock'=>'23'); //for testing only
-        //$row2 = array('upc'=>'123456780000', 'title'=>'Test CD', 'price'=>'45', 'stock'=>'1'); //for testing only
+            //$row1 = array('upc'=>'123456789999', 'title'=>'Test DVD', 'price'=>'100', 'stock'=>'23'); //for testing only
+            //$row2 = array('upc'=>'123456780000', 'title'=>'Test CD', 'price'=>'45', 'stock'=>'1'); //for testing only
         
-        $result = itemSearch($category, $title, $leadingSinger);
-        if (is_array($result)) {
-            if (count($result)>0) {
-                $returnMessage= count($result)+' items found.';
+            $result = itemSearch($category, $title, $leadingSinger);
+            if (is_array($result)) {
+                if (count($result)>0) {
+                    $returnMessage= count($result).' item(s) found.';
+                } else {
+                    $returnMessage= 'No item matches your criteria. Please specify again.';
+                }
             } else {
-                $returnMessage= 'No item matches your criteria. Please specify again.';
+                $errorMessage = array( '',
+                                    'Unable to connect to the database.',
+                                    'Failed executing query.'
+                                );
+                $returnMessage = 'Error: '.$errorMessage[$result];
             }
-        } else {
-            $errorMessage = array( '',
-                                'Unable to connect to the database.',
-                                'Failed executing query.'
-                            );
-            $returnMessage = 'Error: '.$errorMessage[$result];
         }
+    } elseif ($_POST['addToCart']) {
+        //$itemList = array();
+        $_SESSION['itemlist']=$_POST['item'];
+        //if(!empty($_POST['item'])) {
+        //    foreach($_POST['item'] as $check) {
+        //            $itemList[] = $check;
+        //    }
+        //}
     }
 }
 
@@ -67,7 +77,9 @@ function filter($data){
 <?php
 if (is_array($result)) {
     echo
-    '<div class="instruction">Item(s) that match your criteria: (Choose one to add to shopping cart)</div>
+    '<div class="entryBox">
+    <h3>Item(s) that match(es) your criteria: </h3>
+    <div class="instruction">(Select the items you want to buy)</div>
     <form action="?op='.$_GET['op'].'" method="POST">
     <table>';
 
@@ -75,17 +87,21 @@ if (is_array($result)) {
     $i=0;
     foreach($result as $row) {
         if ($labelRow) {
-            echo '<tr class="labelrow"><td></td>';
+            echo '<tr class="labelrow"><th>select?</th>';
             foreach($row as $key=>$value) {
-                echo '<th class="labelcell">'.$key.'</th>';
+                if ($key!='upc') {
+                    echo '<th class="labelcell">'.$key.'</th>';
+                }
             }
             $labelRow=false;
             echo '</tr>';
         }
         if ($row['stock']>0) {
-            echo '<tr><td><input type="radio" name="item" id="'.$i.'" /></td>';
+            echo '<tr><td><input type="checkbox" name="item" value="'.$row['upc'].'" id="'.$row['upc'].'" /></td>';
             foreach($row as $key=>$value) {
-                echo '<td><label for="'.$i.'">'.$value.'</label></td>';
+                if ($key!='upc') {
+                    echo '<td><label for="'.$row['upc'].'">'.$value.'</label></td>';
+                }
             }
             echo '</tr>';
         }
@@ -97,6 +113,7 @@ if (is_array($result)) {
     <div class="formAction">
         <input type="submit" value="Add To Cart" name="addToCart"/>
     </div>
-    </form>';
+    </form>
+    </div>';
 }
 ?>
