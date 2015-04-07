@@ -19,12 +19,16 @@
 		if (strpos($criteria,'category') !== false 
 			or strpos($criteria,'title') !== false 
 			or strpos($criteria,'leadingSinger') !== false) {
-			$criteria="AND ".$criteria;
+			$criteria="WHERE ".$criteria;
 		} else {
 			$criteria="";
 		}
 		
-        $result = $sql->query("SELECT I.upc, I.title, I.price, I.stock FROM Item I, LeadSinger L WHERE I.upc = L.upc ".$criteria);
+        $result = $sql->query("SELECT I.upc, I.title, I.price, I.stock 
+                                FROM Item I
+                                LEFT JOIN LeadSinger L 
+                                ON I.upc = L.upc "
+                                .$criteria);
 		$table = array();
 		while($row = mysqli_fetch_assoc($result)) {
 			$table[] = $row;
@@ -33,8 +37,32 @@
 		return $table;
 	}
 	
-    //shoppingCart is an array of upc?
-	function itemPurchase($shoppingCart, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
+    function shoppingCartFetch($upcList) {
+        if (!empty($upcList)) {
+		    $sql = Connect();
+		    if ($sql->connect_error) {
+			    return $sql->connect_error;
+		    }
+            $criteria="";
+		    foreach($upcList as $upc) {
+                $criteria .= "OR upc='".$upc."' ";
+            }
+		    if ($criteria!=="") {
+                $criteria = substr($criteria, 3);
+                $criteria = "WHERE ".$criteria;
+                $result = $sql->query("SELECT upc, title, price, stock FROM Item ".$criteria);
+		        $table = array();
+		        while($row = mysqli_fetch_assoc($result)) {
+			        $table[] = $row;
+		        }
+		        Close($sql);
+                return $table;
+            }
+        }
+        return 0;
+	}
+    
+	function itemPurchase($upcList, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
 		define("MAX_DAILY_DELIVERY", 10);
 		$itemRecords = itemSearch($category, $title, $leadingSinger);
 		if ($itemRecords===1) {

@@ -1,3 +1,5 @@
+
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['search']) {
@@ -41,13 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } elseif ($_POST['addToCart']) {
-        //$itemList = array();
-        $_SESSION['itemlist']=$_POST['item'];
-        //if(!empty($_POST['item'])) {
-        //    foreach($_POST['item'] as $check) {
-        //            $itemList[] = $check;
-        //    }
-        //}
+        $_SESSION['itemlist'] = $_POST['item'];
+        $_SESSION['itemquantity'] = $_POST['quantity'];
+        $returnMessage = 'Items added to cart. <br><a href="?op=cart">>>View Your Shopping Cart<<</a>';
     }
 }
 
@@ -93,16 +91,18 @@ if (is_array($result)) {
                     echo '<th class="labelcell">'.$key.'</th>';
                 }
             }
+            echo '<th class="labelcell">Quantity</th>';
             $labelRow=false;
             echo '</tr>';
         }
         if ($row['stock']>0) {
-            echo '<tr><td><input type="checkbox" name="item" value="'.$row['upc'].'" id="'.$row['upc'].'" /></td>';
+            echo '<tr ><td><input type="checkbox" name="item[]" value="'.$row['upc'].'" id="c'.$i.'" onclick="setQuantity('.$i.');"/></td>';
             foreach($row as $key=>$value) {
                 if ($key!='upc') {
-                    echo '<td><label for="'.$row['upc'].'">'.$value.'</label></td>';
+                    echo '<td><label for="c'.$i.'">'.$value.'</label></td>';
                 }
             }
+            echo '<td><input type="number" style="width:30px" name="quantity[]" id="q'.$i.'" value="0" disabled="true"/></td>';
             echo '</tr>';
         }
         $i++;
@@ -117,3 +117,15 @@ if (is_array($result)) {
     </div>';
 }
 ?>
+
+<script>
+function setQuantity(i) {
+    if (document.getElementById("c"+i).checked) {
+        document.getElementById("q"+i).disabled = false;
+        document.getElementById("q"+i).value = "1";
+    } else {
+        document.getElementById("q"+i).disabled = true;
+        document.getElementById("q"+i).value = "0";
+    }
+}
+</script>

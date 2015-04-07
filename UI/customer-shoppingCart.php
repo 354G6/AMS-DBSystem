@@ -1,22 +1,9 @@
 <?php
+include "core/itemPurchase.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$validated=true;
-	$cid = $category = $title = $leadingSinger = $quantity = $cardNum = $expiryDate = "";
-	
-	//filter input data
-	$cid = filter($_POST["cid"]);
-	$category = filter($_POST["category"]);
-	$title = $_POST["title"];
-	$leadingSinger = $_POST["leadingSinger"];
-	$quantity = filter($_POST["quantity"]);
-	$cardNum = filter($_POST["cardNum"]);
-	$expiryDate = filter($_POST["expiryDate"]);
-	
-	//validate
-	if ($cid==""||$cardNum=="") {
-		$validated=false;
-	}
-	
+    
+	$checkOutList = $_POST['item'];
+    $itemQuantityList = $_POST['quantity'];
 }
 
 function filter($data){
@@ -29,16 +16,65 @@ function filter($data){
 <div class="entryBox">
 <h2>Shopping Cart</h2>
 <div class="feedbackMessage"><?echo $returnMessage?></div>
-<div class="instruction">Specify an item you want:</div>
+<div class="instruction"></div>
 
-<div class="entryBox">
-	<div class="formAction">
-        <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-        </select>
-    </div>
-</div>
-</div>
+<?
+if (isset($_SESSION['itemlist'])) {
+    $result = shoppingCartFetch($_SESSION['itemlist']);
+    if (is_array($result)) {
+        echo
+        '
+        <h3>Items in your shopping cart:</h3>
+        <div class="instruction">(Select the items you want to buy)</div>
+        <form action="?op='.$_GET['op'].'" method="POST">
+        <table>';
+
+        $labelRow=true;
+        $i=0;
+    foreach($result as $row) {
+        if ($labelRow) {
+            echo '<tr class="labelrow"><th>select?</th>';
+            foreach($row as $key=>$value) {
+                if ($key!='upc') {
+                    echo '<th class="labelcell">'.$key.'</th>';
+                }
+            }
+            echo '<th class="labelcell">Quantity</th>';
+            $labelRow=false;
+            echo '</tr>';
+        }
+        //if ($row['stock']>0) {
+            echo '<tr ><td><input type="checkbox" name="item[]" value="'.$row['upc'].'" id="c'.$i.'" checked="true" onclick="setQuantity('.$i.');"/></td>';
+            foreach($row as $key=>$value) {
+                if ($key!='upc') {
+                    echo '<td><label for="c'.$i.'">'.$value.'</label></td>';
+                }
+            }
+            echo '<td><input type="number" style="width:30px" name="quantity[]" id="q'.$i.'" value="'.$_SESSION['itemquantity'][$i].'"/></td>';
+            echo '</tr>';
+        //}
+        $i++;
+    }
+    
+        echo
+        '</table>
+        <div class="formAction">
+            <input type="submit" value="Check Out" name="checkout"/>
+        </div>
+        </form>
+        ';
+    }
+}
+?>
+
+<script>
+function setQuantity(i) {
+    if (document.getElementById("c"+i).checked) {
+        document.getElementById("q"+i).disabled = false;
+        document.getElementById("q"+i).value = "1";
+    } else {
+        document.getElementById("q"+i).disabled = true;
+        document.getElementById("q"+i).value = "0";
+    }
+}
+</script>
