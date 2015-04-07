@@ -44,7 +44,7 @@ function filter($data) {
 <div class="entryBox">
     <h2>Generate Daily Report</h2>
     <div class="feedbackMessage"><?echo $returnMessage?></div>
-    <div class="instruction">* required</div>
+    <div class="instruction">(* = required)</div>
     <form action="?op=<?echo $_GET['op'];?>" method="POST">
         <div class="textEntry">Date*: <input type="date" name="date" value="<?echo $_POST['date']?>"/></div>
         <div class="formAction"><input type="submit" value="Submit"/></div>

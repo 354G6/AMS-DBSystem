@@ -13,18 +13,19 @@
 			return 1;
 		}
 		
-		$criteria="category='"+$category+"' AND title='"+$title+"' AND leadingSinger='"+$leadingSinger+"'";
-		$emptyCriteria=array("category='' AND ","title='' AND ","AND leadingSinger=''","leadingSinger=''");
-		str_replace($emptyCriteria,"",$criteria);
+		$criteria="I.category='".$category."' AND I.title='".$title."' AND L.name='".$leadingSinger."'";
+        $emptyCriteria=array("I.category='' AND ","I.title='' AND ","AND L.name=''","L.name=''");
+		$criteria = str_replace($emptyCriteria,"",$criteria);
 		if (strpos($criteria,'category') !== false 
 			or strpos($criteria,'title') !== false 
 			or strpos($criteria,'leadingSinger') !== false) {
-			$criteria="WHERE "+$criteria;
+			$criteria="AND ".$criteria;
 		} else {
 			$criteria="";
 		}
 		
-		$result = $sql->query("SELECT upc, title, price, stock FROM Item "+$criteria);
+        echo '<script>alert("'.$criteria.'");</script>';
+		$result = $sql->query("SELECT I.upc, I.title, I.price, I.stock FROM Item I, LeadSinger L WHERE I.upc = L.upc ".$criteria);
 		$table = array();
 		while($row = mysqli_fetch_assoc($result)) {
 			$table[] = $row;
@@ -33,7 +34,7 @@
 		return $table;
 	}
 	
-    //
+    //shoppingCart is an array of upc?
 	function itemPurchase($shoppingCart, $leadingSinger, $quantity, $cardNum, $expiryDate ) {
 		define("MAX_DAILY_DELIVERY", 10);
 		$itemRecords = itemSearch($category, $title, $leadingSinger);
