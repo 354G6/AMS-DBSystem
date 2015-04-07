@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = CustomerLogin($loginID, $password);
         if ($result === 0) {
 		echo "customer";
+            $_SESSION['cid']=$loginID;
             $_SESSION['role']="customer";
 			echo "<script>window.location = '?op=home'</script>";
         }else if($result === 1){

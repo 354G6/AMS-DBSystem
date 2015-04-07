@@ -1,5 +1,3 @@
-
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['search']) {
@@ -43,8 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } elseif ($_POST['addToCart']) {
-        $_SESSION['itemlist'] = $_POST['item'];
-        $_SESSION['itemquantity'] = $_POST['quantity'];
+        $itemlist = array_combine($_POST['item'],$_POST['quantity']);
+        if (isset($_SESSION['itemlist'])) {
+            $_SESSION['itemlist'] = $itemlist + $_SESSION['itemlist'];
+        } else {
+            $_SESSION['itemlist'] = $itemlist;
+        }
+        //$_SESSION['itemlist'] = $_POST['item'];
+        //$_SESSION['itemquantity'] = $_POST['quantity'];
         $returnMessage = 'Items added to cart. <br><a href="?op=cart">>>View Your Shopping Cart<<</a>';
     }
 }
@@ -95,7 +99,7 @@ if (is_array($result)) {
             $labelRow=false;
             echo '</tr>';
         }
-        if ($row['stock']>0) {
+        //if ($row['stock']>0) {
             echo '<tr ><td><input type="checkbox" name="item[]" value="'.$row['upc'].'" id="c'.$i.'" onclick="setQuantity('.$i.');"/></td>';
             foreach($row as $key=>$value) {
                 if ($key!='upc') {
@@ -104,7 +108,7 @@ if (is_array($result)) {
             }
             echo '<td><input type="number" style="width:30px" name="quantity[]" id="q'.$i.'" value="0" disabled="true"/></td>';
             echo '</tr>';
-        }
+        //}
         $i++;
     }
     

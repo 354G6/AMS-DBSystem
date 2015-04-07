@@ -28,7 +28,7 @@ if ($_GET["op"]=="register" || $_GET["op"]=="procReg") $_SESSION["role"]="guest"
 
 if ($_GET["op"]=="login") session_unset();
 
-echo "[DEBUG] YOUR ROLE: (".$_SESSION["role"]."); OPERATION: (".$_GET["op"].")";
+//echo "[DEBUG] YOUR ROLE: (".$_SESSION["role"]."); OPERATION: (".$_GET["op"].")";
 
 //customer ($role=cust) 
 if ($_SESSION["role"]=="customer") {
@@ -83,8 +83,8 @@ else {
 		</ul>
 	</div>
 	<div id="RightPanel">
-	  <div>[DEBUG]Operation: <?echo $_GET['op'];?></div>
-	  <div>[DEBUG]Contents:</div>
+<!-- 	  <div>[DEBUG]Operation: <?echo $_GET['op'];?></div>
+	  <div>[DEBUG]Contents:</div> -->
       <?php include('rightPanel.php');?>
 	</div>
 </div>
