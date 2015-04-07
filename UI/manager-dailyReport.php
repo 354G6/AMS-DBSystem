@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     		// clear from data
     		$_POST["date"]="";
     		
-    		include "core/PurchaseItem.php";
+    		include_once "core/PurchaseItem.php";
     		$returnMessage="";
     		$result = DailyReport($date);
     		if (is_array($result)){
@@ -58,21 +58,19 @@ function filter($data) {
 		<table>';
 		
 		foreach($result as $row){
-			if(count($row) === 4){
-				echo '<tr>';
-				for($i = 0; $i < 4; $i++) {
-					echo '<td>'.$row[$i].'</td>';
-				}
-				echo '</tr>';
+			echo '<tr class="datarow">';
+			for($i = 0; $i < 4; $i++) {
+				echo '<td class="datacell">'.$row[$i].'</td>';
 			}
+			echo '</tr>';
 		}
 		
 		echo '</table>';
+		
+		include_once "core/PurchaseItem.php";
+		$total = DailyTotal($result);
+		echo 'Total: '.$total;
 	}
-	
-	//include_once "core/PurchaseItem.php";
-	//$total = DailyTotal($result);
-	//echo 'Total: '.$total;
 	?>
 	
 </div>
