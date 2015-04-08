@@ -66,13 +66,13 @@
 	//returns 0 for successful login, 1 for clerk, 2 for manager, -1 for failure
 	function CustomerLogin($cid, $password){
 		$r = "Login Failed. Your login id or password may be incorrect.";
-		if(($cid == "111111111") && ($password == "password")){
-			$r = 1;//make sure manually add to db
-		}else if(($cid == "222222222") && ($password == "password")){
-			$r = 2;//make sure manually add to db
-        //---added for testing purpose only (byPass connection to DB)
-        }else if(($cid == "000000000") && ($password == "password")){
+		if(($cid == "customer") && ($password == "password")){
 			$r = 0;//make sure manually add to db
+		}else if(($cid == "clerk") && ($password == "password")){
+			$r = 1;//make sure manually add to db
+        //---added for testing purpose only (byPass connection to DB)
+        }else if(($cid == "manager") && ($password == "password")){
+			$r = 2;//make sure manually add to db
         //---
 		}else{
 			$sql = Connect();
