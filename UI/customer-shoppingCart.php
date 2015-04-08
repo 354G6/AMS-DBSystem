@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result===0) {
             $returnMessage = "Purchased Sucessfully!";
         } else {
-            $returnMessage = $result;
+            $returnMessage = 'Error: '.$result;
         }
     }
 }
