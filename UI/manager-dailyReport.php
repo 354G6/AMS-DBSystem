@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     		$result = DailyReport($date);
     		if (is_array($result)){
 				if(count($result) !== 0){
-					$returnMessage="Successful";
+					$returnMessage="Successful!";
 				}else{
 					$returnMessage = 'No results.';
 				}

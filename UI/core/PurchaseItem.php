@@ -61,7 +61,7 @@
 			return $sql->connect_error;
 		}
 		//$date format must be yyyy-mm-dd
-		$result = $sql->query("SELECT Item.upc, category, ROUND((price*SUM(quantity)), 2) AS price, SUM(quantity)
+		$result = $sql->query("SELECT Item.upc, category, ROUND((price*SUM(quantity)), 2) AS price, SUM(quantity) AS quantity
 							   FROM Item 
 							   INNER JOIN PurchaseItem 
 							   ON Item.upc=PurchaseItem.upc
@@ -84,8 +84,12 @@
 	function DailyTotal($table){
 		reset($table);
 		$totalPrice = 0;
-		for($x = 0; $x < count($table); $x++){
-			$totalPrice = $totalPrice + $table[$x][2];
+		foreach($table as $row){
+			foreach($row as $key=>$value){
+				if($key === "price"){
+					$totalPrice = $totalPrice + $value;
+				}
+			}
 		}
 		return $totalPrice;
 	}
