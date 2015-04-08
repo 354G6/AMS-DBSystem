@@ -2,12 +2,12 @@
 	include_once 'Connect.php';
 
 	// returns an auto_increment id from insert
-	function PurchaseItemInsert($upc, $quantity){
+	function PurchaseItemInsert($receiptId, $upc, $quantity){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			echo $sql->connect_error;
 		}
-		if($sql->query("INSERT INTO PurchaseItem VALUES (NULL, '$upc', '$quantity')") === FALSE){
+		if($sql->query("INSERT INTO PurchaseItem VALUES ($receiptId, '$upc', '$quantity')") === FALSE){
 			echo $sql->error;
 		}else{
 			$r = $sql->insert_id;;

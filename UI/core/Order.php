@@ -1,12 +1,12 @@
 <?php
 	include_once 'Connect.php';
 
-	function OrderInsert($receiptId, $date, $cid, $cardNum, $expiryDate, $expectedDate, $deliveredDate){
+	function OrderInsert($date, $cid, $cardNum, $expiryDate, $expectedDate, $deliveredDate){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			echo $sql->connect_error;
 		}
-		if($sql->query("INSERT INTO `Order` VALUES ('$receiptId', '$date', '$cid', '$cardNum', '$expiryDate', '$expectedDate', '$deliveredDate')") === FALSE){
+		if($sql->query("INSERT INTO `Order` VALUES (NULL, '$date', '$cid', '$cardNum', '$expiryDate', '$expectedDate', '$deliveredDate')") === FALSE){
 			echo $sql->error;
 		}
 		Close($sql);

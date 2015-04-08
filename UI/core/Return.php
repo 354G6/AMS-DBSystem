@@ -80,7 +80,6 @@
 					$result = $sql->error;
 				}else{
 					$row2 = mysqli_fetch_array($result);
-					echo "tq: ".$row2[0];
 					if(($ReturnQ <= $row["quantity"] - $row2[0]) && ($ReturnQ > 0)){//check quantity
 						$oldStock = $row["stock"];
 						//increase stock for warehouse

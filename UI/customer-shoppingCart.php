@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$expiryDate = $_POST["expiryDate"];
 	    
 	if ($validated) {
+		//echo "cardnum: $cardNum";
         $result = itemPurchase($_POST['item'], $_POST['quantity'],$cardNum,$expiryDate);
         if ($result===0) {
             $returnMessage = "Purchased Sucessfully!";

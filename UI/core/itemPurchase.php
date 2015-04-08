@@ -66,7 +66,7 @@
 		define("MAX_DAILY_DELIVERY", 10);
 		
 		$expiryDate = date('Y-m-d', strtotime($expiryDate));//mysql date
-		$todayDate = date('Y-m-d'); //mysql datetime
+		$todayDate = date('Y-m-d  H:i:s'); //mysql datetime
 		$sql = Connect();
 		if ($sql->connect_error) {
 			return $sql->connect_error;
