@@ -80,7 +80,7 @@
 		$days = (int) ($outstandingOrders/MAX_DAILY_DELIVERY)+1;
         
 		$expectedDate = date('Y-m-d', strtotime("+".$days." days", strtotime($todayDate)));
-		echo $expectedDate;
+		//echo $expectedDate;
         $cid = $_SESSION['cid'];
 		//insert tuple in Order table
 		if($sql->query("INSERT INTO `Order` (date, cid, cardNum, expiryDate, expectedDate) VALUES ('$todayDate', '$cid', '$cardNum', '$expiryDate', '$expectedDate')") === FALSE){
