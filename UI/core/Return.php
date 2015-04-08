@@ -71,19 +71,30 @@
 			$today = strtotime(date("Y-m-d H:i:s"));
 			
 			if($today < $expiryDate){//check date
-				if($ReturnQ < $row["quantity"]){//check quantity
-					$oldStock = $row["stock"];
-					//increase stock for warehouse
-					if($sql->query("UPDATE Item SET stock = '$ReturnQ' + '$oldStock' WHERE Item.upc = '$ReturnUPC'") === FALSE){
-						$result = $sql->error;
-					}else{
-						//should return last auto_incremented id and pass to ReturnItemInsert as associated retid
-						$today = date("Y-m-d H:i:s");
-						$lastId = ReturnInsert($today, $ReturnRecID);
-						$result = ReturnItemInsert($lastId, $ReturnUPC, $ReturnQ);
-					}
+				$result = $sql->query("SELECT SUM(quantity)
+								FROM ReturnItem
+								INNER JOIN `Return`
+								ON ReturnItem.retid = `Return`.retid
+								WHERE '$ReturnRecID' = `Return`.receiptId AND '$ReturnUPC' = ReturnItem.upc");
+				if($sql->error){
+					$result = $sql->error;
 				}else{
-					$result = "Invalid quantity.";
+					$row2 = mysqli_fetch_array($result);
+					echo "tq: ".$row2[0];
+					if(($ReturnQ <= $row["quantity"] - $row2[0]) && ($ReturnQ > 0)){//check quantity
+						$oldStock = $row["stock"];
+						//increase stock for warehouse
+						if($sql->query("UPDATE Item SET stock = '$ReturnQ' + '$oldStock' WHERE Item.upc = '$ReturnUPC'") === FALSE){
+							$result = $sql->error;
+						}else{
+							//should return last auto_incremented id and pass to ReturnItemInsert as associated retid
+							$today = date("Y-m-d H:i:s");
+							$lastId = ReturnInsert($today, $ReturnRecID);
+							$result = ReturnItemInsert($lastId, $ReturnUPC, $ReturnQ);
+						}
+					}else{
+						$result = "Invalid quantity.";
+					}
 				}
 			}else{
 				$result = "Deadline to return item has passed.";
