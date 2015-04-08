@@ -18,7 +18,7 @@
 		$criteria = str_replace($emptyCriteria,"",$criteria);
 		if (strpos($criteria,'category') !== false 
 			or strpos($criteria,'title') !== false 
-			or strpos($criteria,'leadingSinger') !== false) {
+			or strpos($criteria,'name') !== false) {
 			$criteria="WHERE ".$criteria;
 		} else {
 			$criteria="";
