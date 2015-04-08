@@ -89,7 +89,7 @@
 				$result = "Deadline to return item has passed.";
 			}
 		}else{
-			$result = "No item with that UPC and receiptId was purchased.";
+			$result = "No purchase with that UPC or receiptId or quantity was made.";
 		}
 
 		Close($sql);
