@@ -89,7 +89,7 @@ if (is_array($result)) {
     $i=0;
     foreach($result as $row) {
         if ($labelRow) {
-            echo '<tr class="labelrow"><th>select?</th>';
+            echo '<tr class="labelrow"><th class="labelcell">select?</th>';
             foreach($row as $key=>$value) {
                 if ($key!='upc') {
                     echo '<th class="labelcell">'.$key.'</th>';
@@ -100,13 +100,13 @@ if (is_array($result)) {
             echo '</tr>';
         }
         //if ($row['stock']>0) {
-            echo '<tr ><td><input type="checkbox" name="item[]" value="'.$row['upc'].'" id="c'.$i.'" onclick="setQuantity('.$i.');"/></td>';
+            echo '<tr class="datarow"><td class="datacell"><input type="checkbox" name="item[]" value="'.$row['upc'].'" id="c'.$i.'" onclick="setQuantity('.$i.');"/></td>';
             foreach($row as $key=>$value) {
                 if ($key!='upc') {
-                    echo '<td><label for="c'.$i.'">'.$value.'</label></td>';
+                    echo '<td class="datacell"><label for="c'.$i.'">'.$value.'</label></td>';
                 }
             }
-            echo '<td><input type="number" style="width:30px" name="quantity[]" id="q'.$i.'" value="0" disabled="true"/></td>';
+            echo '<td class="datacell"><input type="number" style="width:50px" name="quantity[]" id="q'.$i.'" value="0" disabled="true"/></td>';
             echo '</tr>';
         //}
         $i++;

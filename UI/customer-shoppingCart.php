@@ -1,5 +1,4 @@
 <?php
-$returnMessage = 'No item in your shopping cart. <br><a href="?op=purchase">>>Search for an item here<<</a>';
 include "core/itemPurchase.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validated=true;
@@ -11,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    
 	if ($validated) {
         $result = itemPurchase($_POST['item'], $_POST['quantity'],$cardNum,$expiryDate);
-        if ($result===0) {
-            $returnMessage = "Purchased Sucessfully!";
+        if (is_array($result)) {
+            $returnMessage = "Purchased Sucessfully! <br>ReceiptID: ".$result[0]."<br>Expected Delivery: ".$result[1];
         } else {
             $returnMessage = 'Error: '.$result;
         }
@@ -26,6 +25,9 @@ function filter($data){
 	return $data;
 }
 
+if (!isset($_SESSION['itemlist'])) {
+    $returnMessage = 'No item in your shopping cart. <br><a href="?op=purchase">>>Search for an item here<<</a>';
+}
 ?>
 <div class="entryBox">
 <h2>Shopping Cart</h2>
@@ -38,7 +40,6 @@ if (isset($_SESSION['itemlist'])) {
 
     $result = shoppingCartFetch(array_keys($_SESSION['itemlist']));
     if (is_array($result)) {
-        $returnMessage = "";
         echo
         '
         <h3>Items in your shopping cart:</h3>
@@ -50,7 +51,7 @@ if (isset($_SESSION['itemlist'])) {
         $i=0;
         foreach($result as $row) {
             if ($labelRow) {
-                echo '<tr class="labelrow"><th>select?</th>';
+                echo '<tr class="labelrow"><th class="labelcell">select?</th>';
                 foreach($row as $key=>$value) {
                     if ($key!='upc') {
                         echo '<th class="labelcell">'.$key.'</th>';
@@ -62,15 +63,15 @@ if (isset($_SESSION['itemlist'])) {
                 echo '</tr>';
             }
             //if ($row['stock']>0) {
-                echo '<tr ><td><input type="checkbox" name="item[]" value="'.$row['upc'].'" id="c'.$i.'" checked="true" onclick="setQuantity('.$i.');"/></td>';
+                echo '<tr class="datarow"><td class="datacell"><input type="checkbox" name="item[]" value="'.$row['upc'].'" id="c'.$i.'" checked="true" onclick="setQuantity('.$i.');"/></td>';
                 foreach($row as $key=>$value) {
                     if ($key!='upc') {
-                        echo '<td><label for="c'.$i.'">'.$value.'</label></td>';
+                        echo '<td class="datacell"><label for="c'.$i.'">'.$value.'</label></td>';
                     }
                 }
                 $pricelist[] = $row['price'];
-                echo '<td><input type="number" style="width:50px" name="quantity[]" id="q'.$i.'" value="'.$_SESSION['itemlist'][$row['upc']].'" oninput="calcSubtotal('.$i.')" required/></td>';
-                echo '<td><label for="c'.$i.'" id="st'.$i.'">'.($row['price']*$_SESSION['itemlist'][$row['upc']]).'</label></td>';
+                echo '<td class="datacell"><input type="number" style="width:50px" name="quantity[]" id="q'.$i.'" value="'.$_SESSION['itemlist'][$row['upc']].'" oninput="calcSubtotal('.$i.')" required/></td>';
+                echo '<td class="datacell"><label for="c'.$i.'" id="st'.$i.'">'.($row['price']*$_SESSION['itemlist'][$row['upc']]).'</label></td>';
                 echo '</tr>';
             //}
             $i++;
@@ -81,7 +82,7 @@ if (isset($_SESSION['itemlist'])) {
         echo '<td></td>';
         }
         echo
-        '<td></td><td></td><td></td><td></td><th>Total:</th>
+        '<td></td><td></td><td></td><th>Total:</th>
         <td id="total"></td></tr>';
     
         echo

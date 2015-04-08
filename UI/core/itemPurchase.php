@@ -73,7 +73,7 @@
 		}
         //estimate Delivery Date
 		if(($countOrder = $sql->query("SELECT COUNT(*) FROM `Order` WHERE deliveredDate IS NULL")) === FALSE){
-			return 2;
+			return $sql->error;
 		}
         
 		$outstandingOrders = (int) mysqli_fetch_row($countOrder)[0];
@@ -92,18 +92,18 @@
         $i=0;
         foreach ($upcList as $upc) {
 			if($sql->query("INSERT INTO PurchaseItem (receiptId, upc, quantity) VALUES ('$receiptId', '$upc', '$quantityList[$i]')") === FALSE){
-				return 4;
+				return $sql->error;
 			}
 			
 			//update inventory
 			if($sql->query("UPDATE Item SET stock=stock-1 WHERE upc='$upc'") === FALSE){
-				return 5;
+				return $sql->error;
 			}
             $i++;
 		}
 			
 		Close($sql);
 		
-        return 0;
+        return array($receiptId,$expectedDate);
 	}
 	

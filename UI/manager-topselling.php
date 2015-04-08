@@ -75,7 +75,7 @@ if (is_array($result)) {
         //if ($row['stock']>0) {
             echo '<tr class="datarow">';
             foreach($row as $key=>$value) {
-                echo '<td>'.$value.'</td>';
+                echo '<td class="datacell">'.$value.'</td>';
             }
             echo '</tr>';
         //}
