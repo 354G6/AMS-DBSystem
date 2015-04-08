@@ -9,11 +9,9 @@
 		}
 		if($sql->query("INSERT INTO PurchaseItem VALUES ($receiptId, '$upc', '$quantity')") === FALSE){
 			echo $sql->error;
-		}else{
-			$r = $sql->insert_id;;
 		}
 		Close($sql);
-		return $r;
+		//return $r;
 	}
 	
 	function PurchaseItemDelete($receiptId, $upc){

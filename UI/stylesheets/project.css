@@ -122,3 +122,22 @@ a:hover {
 	margin-bottom: 10px;
 	background-color: #EEEEEE;	/* light grey */
 }
+.labelrow {
+	background-color: #EEEEEE;
+}
+.labelcell {
+	border: 1px solid #CCCCCC;
+	padding: 5px;
+	font-size: 14px;
+}
+.datarow {
+	background-color: #FFFFFF;
+}
+.datarow:hover {
+	background-color: #EEEEEE;
+}
+.datacell {
+	#border: 1px solid #F5F5F5;
+	padding: 5px;
+	font-size: 14px;
+}

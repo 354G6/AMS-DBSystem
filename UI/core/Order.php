@@ -1,23 +1,27 @@
 <?php
 	include_once 'Connect.php';
-
+    include_once 'sqlDataStr.php';
+    
 	function OrderInsert($date, $cid, $cardNum, $expiryDate, $expectedDate, $deliveredDate){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			echo $sql->connect_error;
 		}
-		if($sql->query("INSERT INTO `Order` VALUES (NULL, '$date', '$cid', '$cardNum', '$expiryDate', '$expectedDate', '$deliveredDate')") === FALSE){
+		if($sql->query("INSERT INTO `Order` VALUES (NULL, ".sqlDataStr($date).", ".sqlDataStr($cid).", ".sqlDataStr($cardNum).", ".sqlDataStr($expiryDate).", ".sqlDataStr($expectedDate).", ".sqlDataStr($deliveredDate).")") === FALSE){
 			echo $sql->error;
-		}
+		} else {
+            $r = $sql->insert_id;
+        }
 		Close($sql);
+        return $r;
 	}
 	
-	function OrderDelete($receiptId, $cid){
+	function OrderDelete($receiptId){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			echo $sql->connect_error;
 		}
-		if($sql->query("DELETE FROM `Order` WHERE receiptId = '$receiptId' AND cid = '$cid'") === FALSE){
+		if($sql->query("DELETE FROM `Order` WHERE receiptId = '$receiptId'") === FALSE){
 			echo $sql->error;
 		}
 		Close($sql);

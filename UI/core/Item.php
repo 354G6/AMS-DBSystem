@@ -1,12 +1,12 @@
 <?php
 	include_once 'Connect.php';
-
+    include_once 'sqlDataStr.php';
 	function ItemInsert($upc, $title, $type, $category, $company, $year, $price, $stock){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			echo $sql->connect_error;
 		}
-		if($sql->query("INSERT INTO Item VALUES ('$upc', '$title', '$type', '$category', '$company', '$year', '$price', '$stock')") === FALSE){
+		if($sql->query("INSERT INTO Item VALUES ('$upc', ".sqlDataStr($title).", ".sqlDataStr($type).", ".sqlDataStr($category).", ".sqlDataStr($company).", ".sqlDataStr($year).", '$price', '$stock')") === FALSE){
 			echo $sql->error;
 		}
 		Close($sql);

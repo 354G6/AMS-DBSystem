@@ -45,9 +45,9 @@ elseif ($_SESSION["role"]=="manager") {
 				    "procdelivery"=>"Process Delivery of Order",
 				    "dailysales"=>"Generate Daily Sales Report",
 				    "topselling"=>"Get Top Selling Items",
-                    "insert"=>"[Database] Insert to Table",
-                    "delete"=>"[Database] Delete to Table",
-                    "display"=>"[Database] Display Table",
+                    "insert"=>"[Database] Insert Records",
+                    "delete"=>"[Database] Delete Records",
+                    "display"=>"[Database] Display Records",
 					);
 }
 

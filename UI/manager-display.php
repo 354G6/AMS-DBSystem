@@ -61,7 +61,7 @@ function filter($data) {
     <div class="instruction">(* = required)</div>
     <form action="?op=<?echo $_GET['op'];?>" method="POST">
         <div class="textEntry">Table*:
-            <select name="targettable">
+            <select id="targettable" name="targettable" >
                 <option value="Item">Item</option>
                 <option value="LeadSinger">LeadSinger</option>
                 <option value="HasSong">HasSong</option>
@@ -79,7 +79,7 @@ function filter($data) {
 <?php
 if (is_array($result)) {
     echo
-    '<div class="instruction">Result:</div>
+    '<h4>Tuples in '.$table.' table:</h4>
     <table>';
 
     $labelRow=true;
@@ -95,7 +95,8 @@ if (is_array($result)) {
         //if ($row['stock']>0) {
             echo '<tr class="datarow">';
             foreach($row as $key=>$value) {
-                echo '<td>'.$value.'</td>';
+                if ($key=="password") $value="***(MASKED)";
+                echo '<td class="datacell">'.$value.'</td>';
             }
             echo '</tr>';
         //}
@@ -106,3 +107,16 @@ if (is_array($result)) {
     '</table>';
 }
 ?>
+
+<script>
+window.onload = selectLastTable;
+    <?
+    if(isset($table)) {
+        echo '
+        
+        function selectLastTable() {
+            document.getElementById("targettable").value="'.$table.'";
+        }';
+    }
+    ?>
+</script>

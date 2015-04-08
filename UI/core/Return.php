@@ -1,14 +1,16 @@
 <?php
 	include_once 'Connect.php';
 	include_once 'ReturnItem.php';
+    include_once 'sqlDataStr.php';
 
+    
 	// returns an auto_increment id from insert
 	function ReturnInsert($date, $receiptId){
 		$sql = Connect();
 		if ($sql->connect_error) {
 			$r = $sql->connect_error;
 		}
-		if($sql->query("INSERT INTO `Return` VALUES (NULL, '$date', '$receiptId')") === FALSE){
+		if($sql->query("INSERT INTO `Return` VALUES (NULL, ".sqlDataStr($date).", ".sqlDataStr($receiptId).")") === FALSE){
 			$r = $sql->error;
 		}else{
 			$r = $sql->insert_id;
