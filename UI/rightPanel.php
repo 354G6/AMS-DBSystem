@@ -36,6 +36,15 @@ else {
         case "topselling": //to be done
             include('manager-topselling.php');
             break;
+        case "insert":
+            include('manager-insert.php');
+            break;
+        case "delete":
+            include('manager-delete.php');
+            break;
+        case "display":
+            include('manager-display.php');
+            break;
             
         //clerk
         case "refund": //to be done
