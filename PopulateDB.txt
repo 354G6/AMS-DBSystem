@@ -1,0 +1,45 @@
+=================Item================
+INSERT INTO Item VALUES (789543678543, 'Random Access Memories', 'CD', 'Electronic', 'ASCAP', 2001, 19.99, 60);
+INSERT INTO Item VALUES (789457893457, 'Little Red', 'CD', 'Rock', 'A&M Records', 2005, 19.99, 20);
+INSERT INTO Item VALUES (987345893478, 'Dunes', 'CD', 'Rock', 'ASCAP', 2002, 9.99, 40);
+INSERT INTO Item VALUES (234789234589, 'Let the World Know', 'CD', 'Classic', 'A&M Records', 2001, 9.99, 20);
+INSERT INTO Item VALUES (234234987987, 'Voices', 'CD', 'Classic', 'ASCAP', 2010, 19.99, 20);
+INSERT INTO Item VALUES (234899872344, 'Present Tense', 'DVD', 'Country', 'ASCAP', 2014, 9.99, 40);
+INSERT INTO Item VALUES (547834578934, 'Crush', 'DVD', 'Country', 'A&M Records', 2015, 19.99, 20);
+INSERT INTO Item VALUES (239548743985, 'Louder', 'DVD', 'Heavy Metal', 'ASCAP', 2009, 9.99, 40);
+INSERT INTO Item VALUES (987435987345, 'Atlas', 'DVD', 'Jazz', 'ASCAP', 2001, 19.99, 20);
+INSERT INTO Item VALUES (578439574892, 'Touchdown', 'DVD', 'Hip Hop', 'A&M Records', 2012, 9.99, 40);
+
+=================LeadSinger================
+
+INSERT INTO LeadSinger VALUES (789543678543, 'Daft Punk');
+INSERT INTO LeadSinger VALUES (789457893457, 'Katy Perry');
+INSERT INTO LeadSinger VALUES (987345893478, 'William Ferrel');
+INSERT INTO LeadSinger VALUES (234789234589, 'Justin Timberlake');
+INSERT INTO LeadSinger VALUES (234234987987, 'Bob Dylan');
+INSERT INTO LeadSinger VALUES (234899872344, 'Ray Charles');
+INSERT INTO LeadSinger VALUES (547834578934, 'Nicki Minaj');
+INSERT INTO LeadSinger VALUES (239548743985, 'Johnny Cash');
+INSERT INTO LeadSinger VALUES (987435987345, 'Paul McCartney');
+INSERT INTO LeadSinger VALUES (578439574892, 'Lorde');
+
+=================HasSong================
+
+INSERT INTO HasSong VALUES (789543678543, 'Get Lucky');
+INSERT INTO HasSong VALUES (789457893457, 'Believe');
+INSERT INTO HasSong VALUES (987345893478, 'Around The World');
+INSERT INTO HasSong VALUES (234789234589, 'Technologic');
+INSERT INTO HasSong VALUES (234234987987, 'Harder Better Faster Stronger');
+INSERT INTO HasSong VALUES (234899872344, 'Da Funk');
+INSERT INTO HasSong VALUES (547834578934, 'Human After All');
+INSERT INTO HasSong VALUES (239548743985, 'Motherboard');
+INSERT INTO HasSong VALUES (987435987345, 'Touch');
+INSERT INTO HasSong VALUES (578439574892, 'Derezzed');
+
+=================PurchaseItem================
+
+=================`Order`================
+
+=================`Return`================
+
+=================ReturnItem================
