@@ -33,7 +33,7 @@ if ($_GET["op"]=="login") session_unset();
 //customer ($role=cust) 
 if ($_SESSION["role"]=="customer") {
 	$operations = array(
-					"purchase"=>"Buy Items",
+					"purchase"=>"Search Items",
                     "cart"=>"View Shopping Cart "//."(".count($_SESSION['itemlist']).")"
 					);
 }
