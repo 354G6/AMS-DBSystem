@@ -143,7 +143,7 @@ function calcTotal() {
     for(i = 0; i<numRows; i++) {
         subtotal = 0;
         if (!isNaN(parseInt(document.getElementById("st"+i).innerHTML))) {
-            subtotal=parseInt(document.getElementById("st"+i).innerHTML);
+            subtotal=parseFloat(document.getElementById("st"+i).innerHTML);
         }
         sum = sum + subtotal;
     }
